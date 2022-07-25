@@ -1,0 +1,9 @@
+.CityCard {
+  width: 404px;
+  height: 295px;
+  border: 1px black solid;
+  margin: 5px;
+  padding: 1rem;
+  color: black;
+  border-radius: 12px;
+}

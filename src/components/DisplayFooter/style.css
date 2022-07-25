@@ -3,11 +3,13 @@
     background-color: #1A3440;
     display: flex;
     justify-content: left;
-    position:absolute;
     bottom:0;
+    left: 0;
+    position: relative;
+    margin-top: 2rem;
 }
 
-h3{
+.displayFooter h3{
     color: white;
     padding-left: 3rem;
 }

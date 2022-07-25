@@ -1,0 +1,4 @@
+.MainWrapp{
+    display: flex;
+    flex-direction: column;
+}
