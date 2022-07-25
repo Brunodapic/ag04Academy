@@ -1,0 +1,13 @@
+.AccommodationCard {
+    display: flex;
+    flex-direction: column;
+    width: 297px;
+    height: 413px;
+    border: 1px black solid;
+    margin: 5px;
+    padding: 1rem;
+    color: black;
+    border-radius: 12px;
+    text-align: left;
+  }
+  

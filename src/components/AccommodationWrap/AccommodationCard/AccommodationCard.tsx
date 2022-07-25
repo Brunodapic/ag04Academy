@@ -3,6 +3,6 @@ import './style.css'
 
 export default function AccommodationCard() {
   return (
-    <>AccommodationCard</>
+    <div className="AccommodationCard" >AccommodationCard </div>
   );
 }

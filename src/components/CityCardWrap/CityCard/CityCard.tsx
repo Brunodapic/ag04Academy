@@ -7,9 +7,15 @@ interface CityCardProps{
 }
 
 export default function CityCard(props:CityCardProps) {
-  return <div className="CityCard">
-    Card
+  const image="../../images/"+props.name+'.jpeg'
+  return(
+    
+  <div  
+    style={{ background: "no-repeat center url("+image+")" }}
+    className="CityCard">
+    Card Card
     <h3>{props.name}</h3>
     <h4>{props.count} properties</h4>
-    </div>;
+    </div>
+  )
 }

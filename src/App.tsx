@@ -1,4 +1,5 @@
 import './App.css';
+import AccommodationCardWrap from './components/AccommodationWrap/AccommodationCardWrap';
 import CityCardWrap from './components/CityCardWrap/CityCardWrap';
 import DisplayFooter from './components/DisplayFooter/DisplayFooter';
 import DisplayHeader from './components/DisplayHeader/DisplayHeader';
@@ -13,6 +14,7 @@ function App() {
         <DisplayHeader/>
         Main
         <CityCardWrap/>
+        <AccommodationCardWrap/>
         <DisplayFooter/>
       </MainWrapp>
     </div>

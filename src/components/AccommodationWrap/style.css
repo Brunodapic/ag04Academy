@@ -1,0 +1,16 @@
+.AccommodationCardWrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5px;
+    width: 80%;
+    text-align: left;
+  }
+  .AccommodationCardGallery {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  

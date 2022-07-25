@@ -5,7 +5,7 @@ import image from "../../images/header.png"
 export default function DisplayHeader() {
   return (
     <div className="DisplayHeader">
-      <img src={image} />
+      <img className="DisplayHeaderImage" src={image} />
     </div>
   );
 }
