@@ -3,7 +3,7 @@ import AccommodationCard from "./AccommodationCard/AccommodationCard";
 import './style.css'
 
 export default function AccommodationCardWrap() {
-    const COUNT=4
+    const COUNT=3
     const getCards = (count: number) => {
       let content = [];
       for (let i = 0; i < count; i++) {
