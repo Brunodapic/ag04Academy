@@ -1,0 +1,13 @@
+.displayFooter{
+    width: 100%;
+    background-color: #1A3440;
+    display: flex;
+    justify-content: left;
+    position:absolute;
+    bottom:0;
+}
+
+h3{
+    color: white;
+    padding-left: 3rem;
+}
