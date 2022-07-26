@@ -1,13 +1,9 @@
-.AccommodationCard {
-    display: flex;
-    flex-direction: column;
-    width: 297px;
-    height: 413px;
-    border: 1px black solid;
-    margin: 5px;
-    padding: 1rem;
-    color: black;
-    border-radius: 12px;
-    text-align: left;
-  }
-  
+.SAccCardImage {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 35.59%;
+  background:  #d9d9d9;
+  border-radius: 12px;
+}

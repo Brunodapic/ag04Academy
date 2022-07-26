@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./style.css";
+import London from "../../../images/London.jpeg"
 
 interface CityCardProps{
   name: string,  
@@ -11,7 +12,7 @@ export default function CityCard(props:CityCardProps) {
   return(
     
   <div  
-    style={{ background: "no-repeat center url("+image+")" }}
+    style={{ background: "no-repeat center url("+London+")" }}
     className="CityCard">
     Card Card
     <h3>{props.name}</h3>
