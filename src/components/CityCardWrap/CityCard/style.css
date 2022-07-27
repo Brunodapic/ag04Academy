@@ -3,10 +3,72 @@
   flex-direction: column;
   width: 404px;
   height: 295px;
-  border: 1px black solid;
   margin: 5px;
   padding: 1rem;
-  color: black;
   border-radius: 12px;
   text-align: left;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  /* identical to box height, or 29px */
+  letter-spacing: 0.25px;
+  /* Black and White/White */
+  color: #ffffff;
+  /* Shadow_main */
+  text-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.CityCard h3 {
+  padding: 0rem;
+  left: 3.23%;
+  right: 76.48%;
+  top: 6.78%;
+  bottom: 83.39%;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  /* identical to box height, or 29px */
+
+  letter-spacing: 0.25px;
+
+  /* Black and White/White */
+
+  color: black;
+
+  /* Shadow_main */
+
+  text-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+}
+
+.CityCard h4 {
+  padding: 0rem;
+  left: 3.23%;
+  right: 57.17%;
+  top: 19.32%;
+  bottom: 72.54%;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.25px;
+
+  /* Black and White/White */
+
+  color: black;
+
+  /* Shadow_main */
+
+  text-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
 }

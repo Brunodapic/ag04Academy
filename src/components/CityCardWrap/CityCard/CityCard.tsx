@@ -14,7 +14,6 @@ export default function CityCard(props:CityCardProps) {
   <div  
     style={{ background: "no-repeat center url("+London+")" }}
     className="CityCard">
-    Card Card
     <h3>{props.name}</h3>
     <h4>{props.count} properties</h4>
     </div>

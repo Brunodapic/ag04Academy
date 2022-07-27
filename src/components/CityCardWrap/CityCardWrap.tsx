@@ -3,6 +3,7 @@ import CityCard from "./CityCard/CityCard";
 import "./style.css";
 import CityCardData from "../../data/CityCardData.json"
 import { randomInt } from "crypto";
+import { Button } from "@mui/material";
 
 
 export default function CityCardWrap() {
@@ -17,7 +18,11 @@ export default function CityCardWrap() {
 
   return (
     <div className="CityCardWrap">
+      <div className="CityCardWrapHeader">
       <h2>Popular locations</h2>
+      <Button className="ViewAll"> View All Homes &rarr;</Button>
+      </div>
+      
       <div className="CityCardGallery">
       {getCards(COUNT)}
       </div>

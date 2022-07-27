@@ -9,17 +9,18 @@ import acc from "../../../images/acc1.jpeg"
 import AccommodationCardData from "../../../data/AccommodationCardData.json"
 import { maxHeight } from '@mui/system';
 import './style.css'
+import Rating from '@mui/material/Rating';
 
 export default function AccommodationCard() {
   return (
-    <Card sx={{ maxWidth: 297 , maxHeight: 413 }}>
+    <Card className='AccCardContainer' sx={{ maxWidth: 297 , maxHeight: 420 }}>
       <CardMedia
         className='AccCardImage'
         component="img"
-        height="266"
+        height="264"
         width="297"
         image={acc}
-        alt="green iguana"
+        alt="Accommodation Image"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -28,14 +29,11 @@ export default function AccommodationCard() {
         <Typography variant="body2" color="text.secondary">
         {AccommodationCardData.location}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-        {AccommodationCardData.price}
+        <Typography variant="body2" color="text.primary">
+          EUR {AccommodationCardData.price}
         </Typography>
+        <Rating name="read-only" value={5} readOnly />
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }
