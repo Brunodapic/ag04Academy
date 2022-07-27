@@ -1,6 +1,6 @@
 .CityCardWrap {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   padding: 5px;
   width: 80%;

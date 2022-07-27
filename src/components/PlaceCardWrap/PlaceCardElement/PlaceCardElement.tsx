@@ -37,7 +37,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
         <Typography variant="body2" color="text.primary">
           {props.subtitle}
         </Typography>
-        <CardActions>
+        <CardActions className="PlacCardButtons">
           <Button color="success" size="small">
             EDIT
           </Button>

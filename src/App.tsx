@@ -3,9 +3,11 @@ import AccommodationCardWrap from "./components/AccommodationWrap/AccommodationC
 import CityCardWrap from "./components/CityCardWrap/CityCardWrap";
 import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
 import DisplayHeader from "./components/DisplayHeader/DisplayHeader";
+import FullAccommodationComponentWrap from "./components/FullAccommodationComponent/FullAccommodationComponentWrap";
 import MainWrapp from "./components/MainWrapp/MainWrapp";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import PlaceCardWrap from "./components/PlaceCardWrap/PlaceCardWrap";
+import FullAccommodationDetails from "./data/AccommodationDetailsData.json";
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
         <DisplayHeader />
         <CityCardWrap />
         <AccommodationCardWrap />
-        <PlaceCardWrap/>
+        <PlaceCardWrap />
         <DisplayFooter />
       </MainWrapp>
     </div>
@@ -23,3 +25,7 @@ function App() {
 }
 
 export default App;
+
+/*
+<FullAccommodationComponentWrap FullAccommodationDetails={FullAccommodationDetails} />
+*/
