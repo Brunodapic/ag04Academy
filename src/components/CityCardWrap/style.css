@@ -1,0 +1,25 @@
+.CityCardWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 80%;
+  text-align: left;
+}
+.CityCardGallery {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.CityCardWrapHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 100%;
+}

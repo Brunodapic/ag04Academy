@@ -1,0 +1,25 @@
+.NavigationBarDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: white;
+
+}
+
+.NavigationBarDiv div {
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.NavigationBarRoutes{
+    width: 300px;
+    display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-decoration: underline;
+}
+
+.pointer:hover{
+    cursor: pointer;
+}

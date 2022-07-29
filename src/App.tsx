@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AccommodationCardWrap from "./components/AccommodationWrap/AccommodationCardWrap";
+import CityCardWrap from "./components/CityCardWrap/CityCardWrap";
+import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
+import DisplayHeader from "./components/DisplayHeader/DisplayHeader";
+import FullAccommodationComponentWrap from "./components/FullAccommodationComponent/FullAccommodationComponentWrap";
+import MainWrapp from "./components/MainWrapp/MainWrapp";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+import PlaceCardWrap from "./components/PlaceCardWrap/PlaceCardWrap";
+import FullAccommodationDetails from "./data/AccommodationDetailsData.json";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavigationBar />
+      <MainWrapp>
+        <DisplayHeader />
+        <CityCardWrap />
+        <AccommodationCardWrap />
+        <PlaceCardWrap />
+        <DisplayFooter />
+      </MainWrapp>
     </div>
   );
 }
 
 export default App;
+
+/*
+<FullAccommodationComponentWrap FullAccommodationDetails={FullAccommodationDetails} />
+*/

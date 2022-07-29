@@ -1,0 +1,28 @@
+.PlaceCardWrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 80%;
+  text-align: left;
+}
+.PlaceCardWrapGallery {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  justify-content: space-between;
+  width: 100%;
+  row-gap: 15px;
+
+}
+.PlaceCardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 100%;
+}
+.PlaceCardHeader h2 {
+  padding: 5px;
+}
