@@ -5,6 +5,7 @@ import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function PlaceCardWrap() {
   const COUNT = 4;
@@ -28,7 +29,9 @@ export default function PlaceCardWrap() {
     <div className="PlaceCardWrap">
       <div className="PlaceCardHeader">
         <h2>My places</h2>
-        <Button className="ViewAll"> View All My Places &rarr;</Button>
+        <Link to="locations" style={{ textDecoration: 'none' }}>
+          <Button className="ViewAll"> View All My Places &rarr;</Button>
+        </Link>
       </div>
 
       <div className="PlaceCardWrapGallery">{getCards(COUNT)}</div>

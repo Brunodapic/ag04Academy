@@ -12,6 +12,7 @@ interface SideCardProps {
   price: number;
   location: string;
   postalCode: string;
+  ToggleBookStay: Function;
 }
 
 export default function FullAccComponentSideCard(props: SideCardProps) {
@@ -29,7 +30,7 @@ export default function FullAccComponentSideCard(props: SideCardProps) {
         <Typography>{props.postalCode}</Typography>
       </CardContent>
       <CardActions>
-        <Button>BOOK YOUR STAY  &rarr;</Button>
+        <Button onClick={()=>{props.ToggleBookStay()}} >BOOK YOUR STAY  &rarr;</Button>
       </CardActions>
     </Card>
   );

@@ -19,11 +19,14 @@ interface FullAccommodationDetails {
 }
 
 export default function FullAccommodationComponentWrap({
-  FullAccommodationDetails,
+  FullAccommodationDetails , ToggleBookStay
 }: {
   FullAccommodationDetails: FullAccommodationDetails | any;
-}) {
+  ToggleBookStay : Function
+}
+) {
   console.log(FullAccommodationDetails);
+  
   return (
     <div className="FullAccommodationComponentWrap">
       <div className="FullAccommodationComponentHeader">
@@ -45,7 +48,7 @@ export default function FullAccommodationComponentWrap({
               <h4>{FullAccommodationDetails.subtitle}</h4>
             </div>
           </div>
-          <div className="FullAccommodationComponentInfoTextKalendar">
+          <div className="FullAccommodationComponentInfoTextKalendar" >
             <h4>Free cancellation available</h4>
           </div>
           <div className="FullAccommodationComponentInfoTextDescription">
@@ -59,8 +62,18 @@ export default function FullAccommodationComponentWrap({
           price={FullAccommodationDetails.price}
           location={FullAccommodationDetails.location}
           postalCode={FullAccommodationDetails.postalCode}
+          ToggleBookStay={ToggleBookStay}
         />
       </div>
     </div>
   );
 }
+
+/*
+({
+  FullAccommodationDetails
+}: {
+  FullAccommodationDetails: FullAccommodationDetails | any;
+} ,
+  props: any
+)*/
