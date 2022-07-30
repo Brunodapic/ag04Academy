@@ -3,6 +3,7 @@ import CityCard from "./CityCard/CityCard";
 import "./style.css";
 import CityCardData from "../../data/CityCardData.json";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function CityCardWrap() {
   const COUNT = 6;
@@ -24,7 +25,9 @@ export default function CityCardWrap() {
     <div className="CityCardWrap">
       <div className="CityCardWrapHeader">
         <h2>Popular locations</h2>
-        <Button className="ViewAll"> View All Homes &rarr;</Button>
+        <Link to="location">
+          <Button className="ViewAll"> View All Locations &rarr;</Button>
+        </Link>
       </div>
 
       <div className="CityCardGallery">{getCards(COUNT)}</div>

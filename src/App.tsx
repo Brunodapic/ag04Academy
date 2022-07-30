@@ -1,25 +1,23 @@
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import AccommodationCardWrap from "./components/AccommodationWrap/AccommodationCardWrap";
-import CityCardWrap from "./components/CityCardWrap/CityCardWrap";
-import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
-import DisplayHeader from "./components/DisplayHeader/DisplayHeader";
-import FullAccommodationComponentWrap from "./components/FullAccommodationComponent/FullAccommodationComponentWrap";
-import MainWrapp from "./components/MainWrapp/MainWrapp";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
-import PlaceCardWrap from "./components/PlaceCardWrap/PlaceCardWrap";
-import FullAccommodationDetails from "./data/AccommodationDetailsData.json";
+import Favorites from "./pages/Favorites/Favorites";
+import Home from "./pages/Home/Home";
+import Locations from "./pages/Locations/Locations";
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
-      <MainWrapp>
-        <DisplayHeader />
-        <CityCardWrap />
-        <AccommodationCardWrap />
-        <PlaceCardWrap />
-        <DisplayFooter />
-      </MainWrapp>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/locations" element={<Locations />} />
+          <Route path="/favorites" element={<Favorites />} />
+
+        </Routes>
+      </Router>
     </div>
   );
 }
