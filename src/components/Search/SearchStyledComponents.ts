@@ -5,7 +5,7 @@ import { Button, CardContent, Typography } from "@mui/material";
 export const AccommodationSearchOuter = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   position: relative;
   bottom: 50px;
   background: #ffffff;
@@ -16,29 +16,42 @@ export const AccommodationSearchOuter = styled.div`
 `;
 
 export const AccommodationSearchInner = styled.form`
-  width: 90%;
+  width: 97%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 1rem;
+  gap: 6px;
 
-  div{
-      width:100%
+  div {
+    width: 100%;
   }
+`;
 
+export const AccommodationSimpleSearchInner = styled.form`
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 1rem;
+  gap: 6px;
+
+  div {
+    width: 100%;
+  }
 `;
 
 export const AccommodationSearchButton = styled(Button)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 148px;
+  height: 56px;
   padding: 0px;
+  width: 148px;
+  height: 56px;
+  background-color: #40e0d0;
 
-  /* Mint/Mint-400 */
-
-  background: #40e0d0;
-  /* Elevation/2 */
+  palete: {
+    primary: #40e0d0;
+  }
 
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);

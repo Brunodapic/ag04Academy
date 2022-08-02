@@ -61,8 +61,6 @@ export const ReservationMUIcard = styled(Card)`
   width: 618px;
   height: 242px;
 
-  /* Black and White/White */
-
   background: #ffffff;
   /* Gray/Gray-100 */
 
@@ -75,7 +73,7 @@ export const ReservationCardContent = styled(CardContent)`
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
-  gap: 20px;
+  gap: 10px;
   width: 201px;
   height: 210px;
 `;
@@ -89,7 +87,6 @@ export const ReservationCardName = styled(Typography)`
 `;
 
 export const ReservationFormSubmitButton = styled(Button)`
-
   padding: 0px;
 
   width: 227px;
@@ -104,7 +101,7 @@ export const ReservationFormSubmitButton = styled(Button)`
     0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 `;
-export const ReservationFormSubmit= styled.div`
+export const ReservationFormSubmit = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;

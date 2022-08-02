@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import * as S from "./SearchStyledComponents";
+import TypeOfAccommodationComponent from "./TypeOfAccommodationComponent";
 
 export default function AccommodationSearch() {
   const [age, setAge] = React.useState("");
@@ -19,7 +20,11 @@ export default function AccommodationSearch() {
   return (
     <S.AccommodationSearchOuter>
       <S.AccommodationSearchInner>
-        <TextField type="text" label="Full Name" variant="outlined" />
+        <TextField
+          type="text"
+          label="Where are you going?"
+          variant="outlined"
+        />
         <TextField
           id="date"
           label="Check in"
@@ -39,22 +44,23 @@ export default function AccommodationSearch() {
             shrink: true,
           }}
         />
-        <TextField type="number" label="Number of guests" variant="outlined" />
-        <FormControl >
-          <InputLabel id="type">What type of accommodation?</InputLabel>
-          <Select
-            id="type"
-            value={age}
-            label="What type of accommodation?"
-            onChange={handleChange}
-          >
-            <MenuItem value={"Room"}>Room</MenuItem>
-            <MenuItem value={"House"}>House</MenuItem>
-            <MenuItem value={"Apartman"}>Apartman</MenuItem>
-          </Select>
-        </FormControl>
-        <S.AccommodationSearchButton >
-            Search
+        <TextField
+          type="number"
+          label="Number of guests"
+          variant="outlined"
+          InputProps={{
+            inputProps: {
+              max: 20,
+              min: 0,
+            },
+          }}
+        />
+        <TypeOfAccommodationComponent />
+        <S.AccommodationSearchButton
+          sx={{ backgroundColor: "#40E0D0", color: "white" }}
+          color="primary"
+        >
+          Search
         </S.AccommodationSearchButton>
       </S.AccommodationSearchInner>
     </S.AccommodationSearchOuter>
