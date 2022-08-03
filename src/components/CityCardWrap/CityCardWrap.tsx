@@ -25,7 +25,7 @@ export default function CityCardWrap() {
     <div className="CityCardWrap">
       <div className="CityCardWrapHeader">
         <h2>Popular locations</h2>
-        <Link to="locations" style={{ textDecoration: 'none' }} >
+        <Link to="locations" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All Locations &rarr;</Button>
         </Link>
       </div>

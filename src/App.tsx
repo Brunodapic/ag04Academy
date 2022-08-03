@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
@@ -21,8 +20,7 @@ function App() {
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
           <Route path="/accommodation" element={<AccommodationPage />} />
-            <Route path=":accommodationID" element={<AccommodationPage />} />
-
+          <Route path=":accommodationID" element={<AccommodationPage />} />
         </Routes>
       </Router>
     </div>

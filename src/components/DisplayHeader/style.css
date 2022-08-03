@@ -1,11 +1,10 @@
 .DisplayHeader {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
 .DisplayHeaderImage {
-    width: 100%;
+  width: 100%;
 }

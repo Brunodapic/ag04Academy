@@ -1,5 +1,3 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -22,7 +20,9 @@ export default function FullAccComponentSideCard(props: SideCardProps) {
       sx={{ backgroundColor: "#f2fdfc" }}
     >
       <CardContent>
-        <Typography sx={{ fontWeight: 'bold' }} variant="h5" >Property info</Typography>
+        <Typography sx={{ fontWeight: "bold" }} variant="h5">
+          Property info
+        </Typography>
         <Typography>{props.personCount} guests</Typography>
         <Typography>{props.type}</Typography>
         <Typography>EUR {props.price} per night</Typography>
@@ -30,7 +30,13 @@ export default function FullAccComponentSideCard(props: SideCardProps) {
         <Typography>{props.postalCode}</Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={()=>{props.ToggleBookStay()}} >BOOK YOUR STAY  &rarr;</Button>
+        <Button
+          onClick={() => {
+            props.ToggleBookStay();
+          }}
+        >
+          BOOK YOUR STAY &rarr;
+        </Button>
       </CardActions>
     </Card>
   );

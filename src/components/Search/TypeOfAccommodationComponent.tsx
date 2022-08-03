@@ -4,19 +4,23 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  TextField,
 } from "@mui/material";
-import * as S from "./SearchStyledComponents";
 import typeOfAccommodation from "../../models/typeOfAccommodation";
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function TypeOfAccommodationComponent() {
-  const [age, setAge] = React.useState("");
+export default function TypeOfAccommodationComponent(props: any) {
+  const [accommodation, setAccommodation] = React.useState("");
+
+  //nisam siguran jeli ovo najbolji način , možda sam mogao slati submit preko propa pa tako?
+  useEffect(() => {
+    props.setTypeOfAccommodation
+      ? props.setTypeOfAccommodation(accommodation)
+      : console.log();
+  }, [accommodation]);
 
   const keys = Object.keys(typeOfAccommodation).filter((v) => isNaN(Number(v)));
-
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setAccommodation(event.target.value as string);
   };
 
   return (
@@ -24,14 +28,22 @@ export default function TypeOfAccommodationComponent() {
       <InputLabel id="type">What type of accommodation?</InputLabel>
       <Select
         id="type"
-        value={age}
+        value={accommodation}
         label="What type of accommodation?"
         onChange={handleChange}
       >
-        <MenuItem value={"Room"}>Room</MenuItem>
-        <MenuItem value={"House"}>House</MenuItem>
-        <MenuItem value={"Apartman"}>Apartman</MenuItem>
+        {keys.map((acc: string) => (
+          <MenuItem key={acc} value={acc}>
+            {acc}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
 }
+
+/*
+<MenuItem value={"Room"}>Room</MenuItem>
+        <MenuItem value={"House"}>House</MenuItem>
+        <MenuItem value={"Apartman"}>Apartman</MenuItem> 
+        */

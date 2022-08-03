@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Card from "@mui/material/Card";
-import { Button, CardContent, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 export const AccommodationSearchOuter = styled.div`
   display: flex;

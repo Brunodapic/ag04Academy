@@ -1,13 +1,19 @@
-import { SelectChangeEvent, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useState } from "react";
 import * as S from "./SearchStyledComponents";
 
-export default function SimpleSearch(props: any) {
+const SimpleSearch: React.FC<{ SearchResult: (data: string) => void }> = (
+  props
+) => {
   const [location, setLocation] = useState("");
+
+  const SimpleSearchSubmit = () => {
+    props.SearchResult(location);
+  };
 
   return (
     <div>
-      <S.AccommodationSimpleSearchInner onSubmit={props.SearchResult}>
+      <S.AccommodationSimpleSearchInner>
         <TextField
           name="location"
           type="text"
@@ -17,14 +23,16 @@ export default function SimpleSearch(props: any) {
           onChange={(newValue) => setLocation(newValue.target.value)}
         />
         <S.AccommodationSearchButton
-          type="submit"
           value="Submit"
           sx={{ backgroundColor: "#40E0D0", color: "white" }}
           color="primary"
+          onClick={() => SimpleSearchSubmit()}
         >
           Search
         </S.AccommodationSearchButton>
       </S.AccommodationSimpleSearchInner>
     </div>
   );
-}
+};
+
+export default SimpleSearch;

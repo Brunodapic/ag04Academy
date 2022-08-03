@@ -1,9 +1,15 @@
-import React from "react";
+export interface accommodationFormInterface {
+  location: string;
+  typeOfAccommodation: typeOfAccommodation | undefined;
+  number: number;
+  checkIn: Date;
+  checkOut: Date;
+}
 
 enum typeOfAccommodation {
-  Room,
-  House,
-  Apartman
+  Room = "Room",
+  House = "House",
+  Apartman = "Apartman",
 }
 
 export default typeOfAccommodation;

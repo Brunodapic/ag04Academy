@@ -18,7 +18,7 @@ export default function AccommodationCardWrap() {
     <div className="AccommodationCardWrap">
       <div className="AccommodationCardHeader">
         <h2>Homes guests love</h2>
-        <Link to="favorites" style={{ textDecoration: 'none' }} >
+        <Link to="favorites" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All Homes &rarr;</Button>
         </Link>
       </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./style.css";
 import image from "../../images/FullAccommodationComponentHeader.jpeg";
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import FullAccComponentSideCard from "./FullAccComponentSideCard/FullAccComponentSideCard";
 
 interface FullAccommodationDetails {
@@ -19,18 +19,20 @@ interface FullAccommodationDetails {
 }
 
 export default function FullAccommodationComponentWrap({
-  FullAccommodationDetails , ToggleBookStay
+  FullAccommodationDetails,
+  ToggleBookStay,
 }: {
   FullAccommodationDetails: FullAccommodationDetails | any;
-  ToggleBookStay : Function
-}
-) {
-  console.log(FullAccommodationDetails);
-  
+  ToggleBookStay: Function;
+}) {
   return (
     <div className="FullAccommodationComponentWrap">
       <div className="FullAccommodationComponentHeader">
-        <img className="FullAccommodationComponentHeaderImage" src={image} />
+        <img
+          className="FullAccommodationComponentHeaderImage"
+          src={image}
+          alt="Header of Component"
+        />
       </div>
       <div className="FullAccommodationComponentInfo">
         <div className="FullAccommodationComponentInfoText">
@@ -48,7 +50,7 @@ export default function FullAccommodationComponentWrap({
               <h4>{FullAccommodationDetails.subtitle}</h4>
             </div>
           </div>
-          <div className="FullAccommodationComponentInfoTextKalendar" >
+          <div className="FullAccommodationComponentInfoTextKalendar">
             <h4>Free cancellation available</h4>
           </div>
           <div className="FullAccommodationComponentInfoTextDescription">

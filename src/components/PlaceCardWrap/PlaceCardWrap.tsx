@@ -1,4 +1,3 @@
-import * as React from "react";
 import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
 import PlaceCardData from "../../data/PlaceCardData.json";
@@ -18,7 +17,7 @@ export default function PlaceCardWrap() {
           title={PlaceCardData[i % 2].title}
           location={PlaceCardData[i % 2].location}
           subtitle={PlaceCardData[i % 2].subtitle}
-          image={i % 2 == 0 ? TreeHouse : ModernHouse}
+          image={i % 2 === 0 ? TreeHouse : ModernHouse}
         />
       );
     }
@@ -29,7 +28,7 @@ export default function PlaceCardWrap() {
     <div className="PlaceCardWrap">
       <div className="PlaceCardHeader">
         <h2>My places</h2>
-        <Link to="locations" style={{ textDecoration: 'none' }}>
+        <Link to="locations" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All My Places &rarr;</Button>
         </Link>
       </div>
