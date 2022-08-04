@@ -7,8 +7,9 @@ interface reservationFormInterface {
   name: string;
   email: string;
   number: number;
-  checkIn: Date;
-  checkOut: Date;
+  //orginalno je za checkin i checkout bio Date , ali imao sam error-e vezi neke konverzije datuma
+  checkIn: string;
+  checkOut: string;
 }
 
 export default function ReservationForm({
@@ -19,8 +20,27 @@ export default function ReservationForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState(0);
-  const [checkIn, setCheckIn] = useState(new Date());
-  const [checkOut, setCheckOut] = useState(new Date());
+
+  const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
+  const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
+
+  function FormatDate(todayDate2: Date) {
+    const todayDate = new Date(todayDate2); 
+    const formatDate =
+      todayDate.getDate() < 10
+        ? `0${todayDate.getDate()}`
+        : todayDate.getDate();
+    const formatMonth =
+      todayDate.getMonth() < 10
+        ? `0${todayDate.getMonth()}`
+        : todayDate.getMonth();
+    const formattedDate = [
+      todayDate.getFullYear(),
+      formatMonth,
+      formatDate,
+    ].join("-");
+    return formattedDate
+  }
 
   const nameChange = (event: any) => {
     setName(event.target.value);
@@ -32,10 +52,10 @@ export default function ReservationForm({
     setNumber(event.target.value);
   };
   const checkInChange = (event: any) => {
-    setCheckIn(event.target.value);
+    setCheckIn(FormatDate(event.target.value));
   };
   const checkOutChange = (event: any) => {
-    setCheckOut(event.target.value);
+    setCheckOut(FormatDate(event.target.value));
   };
 
   const reservationFromSubmit = () => {
@@ -51,8 +71,8 @@ export default function ReservationForm({
     setName("");
     setEmail("");
     setNumber(0);
-    setCheckIn(new Date());
-    setCheckOut(new Date());
+    setCheckIn(FormatDate(new Date()));
+    setCheckOut(FormatDate(new Date()));
   };
 
   return (

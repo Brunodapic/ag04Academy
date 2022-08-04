@@ -8,8 +8,8 @@ export interface reservationFormInterface {
   name: string;
   email: string;
   number: number;
-  checkIn: Date;
-  checkOut: Date;
+  checkIn: string;
+  checkOut: string;
 }
 
 export default function Reservation({

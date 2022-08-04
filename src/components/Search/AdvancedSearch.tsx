@@ -7,8 +7,8 @@ import typeOfAccommodation from "../../models/typeOfAccommodation";
 interface reservationFormInterface {
   typeOfAccommodation: typeOfAccommodation | undefined;
   number: number;
-  checkIn: Date;
-  checkOut: Date;
+  checkIn: string;
+  checkOut: string;
 }
 
 const AdvancedSearch: React.FC<{
@@ -17,8 +17,26 @@ const AdvancedSearch: React.FC<{
   const [typeOfAccommodation, setTypeOfAccommodation] =
     useState<typeOfAccommodation>();
   const [number, setNumber] = useState(0);
-  const [checkIn, setCheckIn] = useState(new Date());
-  const [checkOut, setCheckOut] = useState(new Date());
+  const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
+  const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
+
+  function FormatDate(todayDate2: Date) {
+    const todayDate = new Date(todayDate2); 
+    const formatDate =
+      todayDate.getDate() < 10
+        ? `0${todayDate.getDate()}`
+        : todayDate.getDate();
+    const formatMonth =
+      todayDate.getMonth() < 10
+        ? `0${todayDate.getMonth()}`
+        : todayDate.getMonth();
+    const formattedDate = [
+      todayDate.getFullYear(),
+      formatMonth,
+      formatDate,
+    ].join("-");
+    return formattedDate
+  }
 
   const numberChange = (event: any) => {
     setNumber(event.target.value);
@@ -41,8 +59,8 @@ const AdvancedSearch: React.FC<{
     props.SearchResult(reservationForm);
     setTypeOfAccommodation(undefined);
     setNumber(0);
-    setCheckIn(new Date());
-    setCheckOut(new Date());
+    setCheckIn(FormatDate(new Date()));
+    setCheckOut(FormatDate(new Date()));
   };
 
   return (
