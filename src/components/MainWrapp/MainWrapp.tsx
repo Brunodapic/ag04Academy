@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import "./style.css";
 
 export default function DisplayHeader(props: {
@@ -9,5 +9,5 @@ export default function DisplayHeader(props: {
     | null
     | undefined;
 }) {
-  return <div className="MainWrapp">{props.children}</div>;
+  return <div className="main-wrapp">{props.children}</div>;
 }

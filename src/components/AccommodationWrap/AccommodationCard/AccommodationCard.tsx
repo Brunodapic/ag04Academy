@@ -11,7 +11,7 @@ export default function AccommodationCard() {
   return (
     <Card className="AccCardContainer" sx={{ maxWidth: 297, maxHeight: 420 }}>
       <CardMedia
-        className="AccCardImage"
+        className="acc-card-image"
         component="img"
         height="264"
         width="297"

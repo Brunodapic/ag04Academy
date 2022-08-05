@@ -21,7 +21,7 @@ const AdvancedSearch: React.FC<{
   const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
 
   function FormatDate(todayDate2: Date) {
-    const todayDate = new Date(todayDate2); 
+    const todayDate = new Date(todayDate2);
     const formatDate =
       todayDate.getDate() < 10
         ? `0${todayDate.getDate()}`
@@ -35,7 +35,7 @@ const AdvancedSearch: React.FC<{
       formatMonth,
       formatDate,
     ].join("-");
-    return formattedDate
+    return formattedDate;
   }
 
   const numberChange = (event: any) => {

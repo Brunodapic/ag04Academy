@@ -25,15 +25,15 @@ export default function PlaceCardWrap() {
   };
 
   return (
-    <div className="PlaceCardWrap">
-      <div className="PlaceCardHeader">
+    <div className="plac-card-wrap">
+      <div className="plac-card-header">
         <h2>My places</h2>
         <Link to="locations" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All My Places &rarr;</Button>
         </Link>
       </div>
 
-      <div className="PlaceCardWrapGallery">{getCards(COUNT)}</div>
+      <div className="plac-card-wrap-gallery">{getCards(COUNT)}</div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-.NavigationBarDiv {
+.navigation-bar-div {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -8,12 +8,12 @@
   box-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
 }
 
-.NavigationBarDiv div {
+.navigation-bar-div div {
   padding-left: 1rem;
   padding-right: 2rem;
 }
 
-.NavigationBarRoutes {
+.navigation-bar-routes {
   width: 300px;
   display: flex;
   justify-content: space-between;

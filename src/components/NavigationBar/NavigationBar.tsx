@@ -5,7 +5,7 @@ export default function NavigationBar() {
   let navigate = useNavigate();
 
   return (
-    <div className="NavigationBarDiv">
+    <div className="navigation-bar-div">
       <div>
         <h2
           className="pointer"
@@ -16,9 +16,9 @@ export default function NavigationBar() {
           Staycation
         </h2>
       </div>
-      <div className="NavigationBarRoutes">
+      <div className="navigation-bar-routes">
         <h4
-          className="NavigationBarLink pointer"
+          className="pointer"
           onClick={() => {
             navigate("/locations");
           }}
@@ -26,7 +26,7 @@ export default function NavigationBar() {
           Locations
         </h4>
         <h4
-          className="NavigationBarLink pointer"
+          className="pointer"
           onClick={() => {
             navigate("/MyPlaces");
           }}
@@ -34,7 +34,7 @@ export default function NavigationBar() {
           My Places
         </h4>
         <h4
-          className="NavigationBarLink pointer"
+          className="pointer"
           onClick={() => {
             navigate("/MyBookings");
           }}
@@ -43,7 +43,7 @@ export default function NavigationBar() {
         </h4>
       </div>
       <div>
-        <h4 className="NavigationBarLogout pointer">Logout</h4>
+        <h4 className="pointer">Logout</h4>
       </div>
     </div>
   );

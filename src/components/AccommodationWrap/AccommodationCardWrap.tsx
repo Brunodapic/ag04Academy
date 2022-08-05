@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import * as React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import AccommodationCard from "./AccommodationCard/AccommodationCard";
 import "./style.css";
@@ -15,14 +15,14 @@ export default function AccommodationCardWrap() {
   };
 
   return (
-    <div className="AccommodationCardWrap">
-      <div className="AccommodationCardHeader">
+    <div className="accommodation-card-wrap">
+      <div className="accommodation-card-header">
         <h2>Homes guests love</h2>
         <Link to="favorites" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All Homes &rarr;</Button>
         </Link>
       </div>
-      <div className="AccommodationCardGallery">{getCards(COUNT)}</div>
+      <div className="accommodation-card-gallery">{getCards(COUNT)}</div>
     </div>
   );
 }

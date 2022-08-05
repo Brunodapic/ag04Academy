@@ -1,4 +1,4 @@
-.CityCardWrap {
+.city-card-wrap {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6,7 +6,7 @@
   width: 80%;
   text-align: left;
 }
-.CityCardGallery {
+.city-card-gallery {
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
@@ -14,7 +14,7 @@
   width: 100%;
 }
 
-.CityCardWrapHeader {
+.city-card-wrap-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

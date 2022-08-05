@@ -16,7 +16,7 @@ const AccommodationSearch: React.FC<{
   const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
 
   function FormatDate(todayDate2: Date) {
-    const todayDate = new Date(todayDate2); 
+    const todayDate = new Date(todayDate2);
     const formatDate =
       todayDate.getDate() < 10
         ? `0${todayDate.getDate()}`
@@ -30,7 +30,7 @@ const AccommodationSearch: React.FC<{
       formatMonth,
       formatDate,
     ].join("-");
-    return formattedDate
+    return formattedDate;
   }
 
   const locationChange = (event: any) => {

@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import * as React from "react";
+import React from "react";
 import { useState } from "react";
 import * as S from "./ReservationStyledComponent";
 
@@ -25,7 +25,7 @@ export default function ReservationForm({
   const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
 
   function FormatDate(todayDate2: Date) {
-    const todayDate = new Date(todayDate2); 
+    const todayDate = new Date(todayDate2);
     const formatDate =
       todayDate.getDate() < 10
         ? `0${todayDate.getDate()}`
@@ -39,7 +39,7 @@ export default function ReservationForm({
       formatMonth,
       formatDate,
     ].join("-");
-    return formattedDate
+    return formattedDate;
   }
 
   const nameChange = (event: any) => {

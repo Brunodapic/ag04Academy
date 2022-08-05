@@ -41,9 +41,3 @@ export default function TypeOfAccommodationComponent(props: any) {
     </FormControl>
   );
 }
-
-/*
-<MenuItem value={"Room"}>Room</MenuItem>
-        <MenuItem value={"House"}>House</MenuItem>
-        <MenuItem value={"Apartman"}>Apartman</MenuItem> 
-        */

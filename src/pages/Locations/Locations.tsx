@@ -1,3 +1,4 @@
+import DisplayFooter from "../../components/DisplayFooter/DisplayFooter";
 import AdvancedSearch from "../../components/Search/AdvancedSearch";
 import SimpleSearch from "../../components/Search/SimpleSearch";
 

@@ -16,7 +16,7 @@ interface SideCardProps {
 export default function FullAccComponentSideCard(props: SideCardProps) {
   return (
     <Card
-      className="FullAccommodationComponentInfoToast"
+      className="full-accommodation-component-info-toast"
       sx={{ backgroundColor: "#f2fdfc" }}
     >
       <CardContent>

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import AccommodationPage from "./pages/AccommodationPage/AccommodationPage";
 import Favorites from "./pages/Favorites/Favorites";
@@ -20,15 +21,11 @@ function App() {
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
           <Route path="/accommodation" element={<AccommodationPage />} />
-          <Route path=":accommodationID" element={<AccommodationPage />} />
         </Routes>
+        <DisplayFooter/>
       </Router>
     </div>
   );
 }
 
 export default App;
-
-/*
-<FullAccommodationComponentWrap FullAccommodationDetails={FullAccommodationDetails} />
-*/

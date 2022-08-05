@@ -1,4 +1,4 @@
-.AccommodationCardWrap {
+.accommodation-card-wrap {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -7,7 +7,7 @@
   text-align: left;
 }
 
-.AccommodationCardGallery {
+.accommodation-card-gallery {
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
@@ -16,7 +16,7 @@
   row-gap: 15px;
 }
 
-.AccommodationCardHeader {
+.accommodation-card-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,6 +24,6 @@
   padding: 5px;
   width: 100%;
 }
-.AccommodationCardHeader h2 {
+.accommodation-card-header h2 {
   padding: 5px;
 }

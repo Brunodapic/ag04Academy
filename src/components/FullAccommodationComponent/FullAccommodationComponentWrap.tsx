@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import "./style.css";
 import image from "../../images/FullAccommodationComponentHeader.jpeg";
 import { Rating } from "@mui/material";
@@ -26,18 +26,18 @@ export default function FullAccommodationComponentWrap({
   ToggleBookStay: Function;
 }) {
   return (
-    <div className="FullAccommodationComponentWrap">
-      <div className="FullAccommodationComponentHeader">
+    <div className="full-accommodation-component-wrap">
+      <div className="full-accommodation-component-header">
         <img
-          className="FullAccommodationComponentHeaderImage"
+          className="full-accommodation-component-header-image"
           src={image}
           alt="Header of Component"
         />
       </div>
-      <div className="FullAccommodationComponentInfo">
-        <div className="FullAccommodationComponentInfoText">
-          <div className="FullAccommodationComponentInfoTextHeader">
-            <div className="FullAccommodationComponentInfoTextHeaderTop">
+      <div className="full-accommodation-component-info">
+        <div className="full-accommodation-component-info-text">
+          <div className="full-accommodation-component-info-text-header">
+            <div className="full-accommodation-component-info-text-header-top">
               <h2>{FullAccommodationDetails.title}</h2>
               <Rating
                 sx={{ paddingTop: "1.5rem", paddingLeft: "1.5rem" }}
@@ -46,7 +46,7 @@ export default function FullAccommodationComponentWrap({
                 readOnly
               />
             </div>
-            <div className="FullAccommodationComponentInfoTextHeaderBot">
+            <div className="full-accommodation-component-info-text-header-bot">
               <h4>{FullAccommodationDetails.subtitle}</h4>
             </div>
           </div>
@@ -70,12 +70,3 @@ export default function FullAccommodationComponentWrap({
     </div>
   );
 }
-
-/*
-({
-  FullAccommodationDetails
-}: {
-  FullAccommodationDetails: FullAccommodationDetails | any;
-} ,
-  props: any
-)*/

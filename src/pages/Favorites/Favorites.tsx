@@ -1,5 +1,10 @@
-import * as React from "react";
+import React from "react";
+import MainWrapp from "../../components/MainWrapp/MainWrapp";
 
 export default function Favorites() {
-  return <div>Favorites</div>;
+  return (
+    <MainWrapp>
+      Favorites
+    </MainWrapp>
+  );
 }
