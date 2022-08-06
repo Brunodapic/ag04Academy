@@ -109,7 +109,7 @@ const AdvancedSearch: React.FC<{
           color="primary"
           onClick={() => advanceSearchSubmit()}
         >
-          Search
+           Search
         </S.AccommodationSearchButton>
       </S.AccommodationSearchInner>
     </div>
