@@ -1,4 +1,4 @@
-.PlacCardButtons {
+.plac-card-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.PlacCardButtons button{
-    left:0;
-    padding-left: 0;
-  }
+.plac-card-buttons button {
+  left: 0;
+  padding-left: 0;
+}

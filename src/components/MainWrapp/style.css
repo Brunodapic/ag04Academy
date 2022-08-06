@@ -1,6 +1,6 @@
-.MainWrapp{
-    width:100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.main-wrapp {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import "./style.css";
 import image from "../../images/FullAccommodationComponentHeader.jpeg";
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import FullAccComponentSideCard from "./FullAccComponentSideCard/FullAccComponentSideCard";
 
 interface FullAccommodationDetails {
@@ -20,19 +20,24 @@ interface FullAccommodationDetails {
 
 export default function FullAccommodationComponentWrap({
   FullAccommodationDetails,
+  ToggleBookStay,
 }: {
   FullAccommodationDetails: FullAccommodationDetails | any;
+  ToggleBookStay: Function;
 }) {
-  console.log(FullAccommodationDetails);
   return (
-    <div className="FullAccommodationComponentWrap">
-      <div className="FullAccommodationComponentHeader">
-        <img className="FullAccommodationComponentHeaderImage" src={image} />
+    <div className="full-accommodation-component-wrap">
+      <div className="full-accommodation-component-header">
+        <img
+          className="full-accommodation-component-header-image"
+          src={image}
+          alt="Header of Component"
+        />
       </div>
-      <div className="FullAccommodationComponentInfo">
-        <div className="FullAccommodationComponentInfoText">
-          <div className="FullAccommodationComponentInfoTextHeader">
-            <div className="FullAccommodationComponentInfoTextHeaderTop">
+      <div className="full-accommodation-component-info">
+        <div className="full-accommodation-component-info-text">
+          <div className="full-accommodation-component-info-text-header">
+            <div className="full-accommodation-component-info-text-header-top">
               <h2>{FullAccommodationDetails.title}</h2>
               <Rating
                 sx={{ paddingTop: "1.5rem", paddingLeft: "1.5rem" }}
@@ -41,7 +46,7 @@ export default function FullAccommodationComponentWrap({
                 readOnly
               />
             </div>
-            <div className="FullAccommodationComponentInfoTextHeaderBot">
+            <div className="full-accommodation-component-info-text-header-bot">
               <h4>{FullAccommodationDetails.subtitle}</h4>
             </div>
           </div>
@@ -59,6 +64,7 @@ export default function FullAccommodationComponentWrap({
           price={FullAccommodationDetails.price}
           location={FullAccommodationDetails.location}
           postalCode={FullAccommodationDetails.postalCode}
+          ToggleBookStay={ToggleBookStay}
         />
       </div>
     </div>

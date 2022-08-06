@@ -1,45 +1,44 @@
-.FullAccommodationComponentWrap {
+.full-accommodation-component-wrap {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
-.FullAccommodationComponentHeader {
+.full-accommodation-component-header {
   width: 100%;
 }
-.FullAccommodationComponentHeaderImage {
+.full-accommodation-component-header-image {
   width: 100%;
   height: 527px;
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: 12px;
 }
-.FullAccommodationComponentInfo {
+.full-accommodation-component-info {
   display: flex;
   flex-direction: row;
   min-height: 10px;
   justify-content: space-between;
 }
-.FullAccommodationComponentInfoText {
+.full-accommodation-component-info-text {
   width: 60%;
   display: flex;
   flex-direction: column;
   text-align: left;
-
 }
-.FullAccommodationComponentInfoToast {
+.full-accommodation-component-info-toast {
   width: 25%;
 }
 
-.FullAccommodationComponentInfoTextHeader {
+.full-accommodation-component-info-text-header {
   display: flex;
   flex-direction: column;
 }
-.FullAccommodationComponentInfoTextHeaderTop {
+.full-accommodation-component-info-text-header-top {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.FullAccommodationComponentInfoTextHeaderBot h4 {
+.full-accommodation-component-info-text-header-bot h4 {
   display: flex;
   flex-direction: row;
   text-align: left;
@@ -47,8 +46,8 @@
   top: 1rem;
 }
 
-.FullAccommodationComponentInfoToast {
-    margin: 15px;
+.full-accommodation-component-info-toast {
+  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -68,30 +67,31 @@
   border-radius: 10px;
 }
 
-.FullAccommodationComponentInfoToast button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 249px;
-    height: 42px;
-    
-    /* Mint/Mint-400 */
-    
-    background: #40E0D0;
-    /* Elevation/2 */
-    
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-    
-    /* Inside auto layout */
-    
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: white;
+.full-accommodation-component-info-toast button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 249px;
+  height: 42px;
+
+  /* Mint/Mint-400 */
+
+  background: #40e0d0;
+  /* Elevation/2 */
+
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: white;
 }
 
-.FullAccommodationComponentInfoToast div *{
-padding: 5px;
+.full-accommodation-component-info-toast div * {
+  padding: 5px;
 }

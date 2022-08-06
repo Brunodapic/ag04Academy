@@ -1,8 +1,9 @@
-import * as React from "react";
+import React from "react";
 import CityCard from "./CityCard/CityCard";
 import "./style.css";
 import CityCardData from "../../data/CityCardData.json";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function CityCardWrap() {
   const COUNT = 6;
@@ -21,13 +22,15 @@ export default function CityCardWrap() {
   };
 
   return (
-    <div className="CityCardWrap">
-      <div className="CityCardWrapHeader">
+    <div className="city-card-wrap">
+      <div className="city-card-wrap-header">
         <h2>Popular locations</h2>
-        <Button className="ViewAll"> View All Homes &rarr;</Button>
+        <Link to="locations" style={{ textDecoration: "none" }}>
+          <Button className="ViewAll"> View All Locations &rarr;</Button>
+        </Link>
       </div>
 
-      <div className="CityCardGallery">{getCards(COUNT)}</div>
+      <div className="city-card-gallery">{getCards(COUNT)}</div>
     </div>
   );
 }

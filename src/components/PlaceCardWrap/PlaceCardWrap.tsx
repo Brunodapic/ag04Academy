@@ -1,10 +1,10 @@
-import * as React from "react";
 import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
 import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function PlaceCardWrap() {
   const COUNT = 4;
@@ -17,7 +17,7 @@ export default function PlaceCardWrap() {
           title={PlaceCardData[i % 2].title}
           location={PlaceCardData[i % 2].location}
           subtitle={PlaceCardData[i % 2].subtitle}
-          image={i % 2 == 0 ? TreeHouse : ModernHouse}
+          image={i % 2 === 0 ? TreeHouse : ModernHouse}
         />
       );
     }
@@ -25,13 +25,15 @@ export default function PlaceCardWrap() {
   };
 
   return (
-    <div className="PlaceCardWrap">
-      <div className="PlaceCardHeader">
+    <div className="plac-card-wrap">
+      <div className="plac-card-header">
         <h2>My places</h2>
-        <Button className="ViewAll"> View All My Places &rarr;</Button>
+        <Link to="locations" style={{ textDecoration: "none" }}>
+          <Button className="ViewAll"> View All My Places &rarr;</Button>
+        </Link>
       </div>
 
-      <div className="PlaceCardWrapGallery">{getCards(COUNT)}</div>
+      <div className="plac-card-wrap-gallery">{getCards(COUNT)}</div>
     </div>
   );
 }
