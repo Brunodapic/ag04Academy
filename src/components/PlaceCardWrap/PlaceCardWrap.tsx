@@ -4,10 +4,12 @@ import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
-export default function PlaceCardWrap() {
-  const COUNT = 4;
+
+export default function PlaceCardWrap(props: {
+  toggleSetFormAdd: () => void;
+}) {
+  const COUNT = 2;
   const getCards = (count: number) => {
     let content = [];
     for (let i = 0; i < count; i++) {
@@ -28,9 +30,13 @@ export default function PlaceCardWrap() {
     <div className="plac-card-wrap">
       <div className="plac-card-header">
         <h2>My places</h2>
-        <Link to="locations" style={{ textDecoration: "none" }}>
-          <Button className="ViewAll"> View All My Places &rarr;</Button>
-        </Link>
+        <Button
+          sx={{ backgroundColor: "#40E0D0", color: "white" }}
+          className="button-add-new-place"
+          onClick={props.toggleSetFormAdd}
+        >
+          ADD NEW PLACE
+        </Button>
       </div>
 
       <div className="plac-card-wrap-gallery">{getCards(COUNT)}</div>
