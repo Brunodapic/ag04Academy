@@ -9,7 +9,8 @@ import {
 import { useEffect, useReducer, useState } from "react";
 import TypeOfAccommodationComponent from "../Search/TypeOfAccommodationComponent";
 import * as S from "./NewPlacFormStyle";
-import {typeOfAccommodation} from "../../models/typeOfAccommodation";
+import { typeOfAccommodation } from "../../models/typeOfAccommodation";
+import FullAccommodationDetailsProps from "../../models/accommodationModel";
 
 const newPlaceDefault = {
   listingName: "",
@@ -95,12 +96,11 @@ const newPlaceStateReducer = (state: any, action: any) => {
   return newPlaceDefault;
 };
 
-const NewPlacForm: React.FC<{ data: any , toggleSetFormAdd: () => void }> = (
-  props
-) => {
-
-  console.log(props.data)
-
+const NewPlacForm: React.FC<{
+  FormData: FullAccommodationDetailsProps | undefined;
+  toggleSetFormAdd: () => void;
+  addAccToList:(accommodation:FullAccommodationDetailsProps)=>void;
+}> = (props) => {
   const [typeOfAccommodation, setTypeOfAccommodation] =
     useState<typeOfAccommodation>();
 
@@ -190,17 +190,14 @@ const NewPlacForm: React.FC<{ data: any , toggleSetFormAdd: () => void }> = (
   };
 
 
-  if(props.data !=null){
-
-  }
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    console.log(newPlaceState);
-    props.toggleSetFormAdd()
+    if(props.FormData == null ){
+      props.addAccToList(newPlaceState)
+    }
+    props.toggleSetFormAdd();
   };
-
-
 
   return (
     <S.NewPlaceFormWrap>
@@ -313,7 +310,7 @@ const NewPlacForm: React.FC<{ data: any , toggleSetFormAdd: () => void }> = (
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
           className="button-add-new-place"
         >
-          {props.data==null? "ADD NEW PLACE" : "FINISH EDIT"}
+          {props.FormData == null ? "ADD NEW PLACE" : "FINISH EDIT"}
         </Button>
       </S.NewPlaceForm>
     </S.NewPlaceFormWrap>

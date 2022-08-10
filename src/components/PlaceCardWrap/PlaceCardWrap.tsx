@@ -1,33 +1,34 @@
 import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
-import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
-import NewPlacForm from "../NewPlaceForm/NewPlaceForm";
-
+import FullAccommodationDetailsProps from "../../models/accommodationModel";
+import { useEffect } from "react";
 
 export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
   setFormData:(data:any)=>void;
+  allAccommodations:FullAccommodationDetailsProps[]
 }) {
 
-  const editForm= (data:any)=>{
-    console.log(data)
+  useEffect(() => {
+    console.log(props.allAccommodations)
+  }, [props.allAccommodations]);
+
+  const editForm= (data:FullAccommodationDetailsProps)=>{
     props.setFormData(data)
     props.toggleSetFormAdd()
   }
 
-  const COUNT = 2;
+  const COUNT = props.allAccommodations.length;
   const getCards = (count: number) => {
     let content = [];
     for (let i = 0; i < count; i++) {
       content.push(
         <PlaceCardElement
           key={i}
-          title={PlaceCardData[i % 2].title}
-          location={PlaceCardData[i % 2].location}
-          subtitle={PlaceCardData[i % 2].subtitle}
+          PlaceCardData={props.allAccommodations[i % COUNT]}
           image={i % 2 === 0 ? TreeHouse : ModernHouse}
           editForm={editForm}
         />

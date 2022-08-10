@@ -8,6 +8,7 @@ import FullAccommodationDetailsProps from "../../models/accommodationModel";
 export default function AccommodationPage() {
   const [bookStay, SetBookStay] = useState(false);
 
+
   const FullAccommodationDetailsProp =
     FullAccommodationDetails as FullAccommodationDetailsProps;
 
