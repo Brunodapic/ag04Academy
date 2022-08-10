@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
-  setFormData:(data:any)=>void;
+  setFormData:(data:FullAccommodationDetailsProps)=>void;
   allAccommodations:FullAccommodationDetailsProps[];
   removeAccFromList:(accommodation:FullAccommodationDetailsProps)=>void
 }) {

@@ -28,6 +28,16 @@ export default function MyPlaces() {
     );
   };
 
+  const updateAccFromList = (accommodation: FullAccommodationDetailsProps) => {
+    setAllAccommodations((prevAccommodation) =>
+    prevAccommodation.map((acc) => {
+        return acc.title === accommodation.title ? accommodation : acc;
+      })
+    );
+  };
+
+  console.log(allAccommodations)
+  
   const toggleSetFormAdd = () => {
     setFormAdd(!formAdd);
   };
@@ -39,6 +49,7 @@ export default function MyPlaces() {
           FormData={formData}
           toggleSetFormAdd={toggleSetFormAdd}
           addAccToList={addAccToList}
+          updateAccFromList={updateAccFromList}
         />
       ) : (
         <PlaceCardWrap

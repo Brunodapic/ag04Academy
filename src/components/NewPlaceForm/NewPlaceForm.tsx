@@ -12,20 +12,6 @@ import * as S from "./NewPlacFormStyle";
 import { typeOfAccommodation } from "../../models/typeOfAccommodation";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
 
-const newPlaceDefault = {
-  title: "",
-  subtitle: "",
-  description: "",
-  categorization: 0,
-  type: null,
-  personCount: 0,
-  price: 0,
-  location: "",
-  postalCode: "",
-  imageUrl: "",
-  cancellation: false,
-};
-
 const newPlaceStateReducer = (state: any, action: any) => {
   const type = action.type;
   switch (type) {
@@ -90,17 +76,42 @@ const newPlaceStateReducer = (state: any, action: any) => {
       };
     }
     default:
-      return newPlaceDefault;
+      return {
+        title: "",
+        subtitle: "",
+        description: "",
+        categorization: 0,
+        type: null,
+        personCount: 0,
+        price: 0,
+        location: "",
+        postalCode: "",
+        imageUrl: "",
+        cancellation: false,
+      };
   }
-  //iz paranoje imam ovaj return
-  return newPlaceDefault;
 };
 
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
-  addAccToList:(accommodation:FullAccommodationDetailsProps)=>void;
+  addAccToList: (accommodation: FullAccommodationDetailsProps) => void;
+  updateAccFromList: (accommodation: FullAccommodationDetailsProps) => void;
 }> = (props) => {
+  const newPlaceDefault = {
+    title: props.FormData ? props.FormData.title : "",
+    subtitle: props.FormData ? props.FormData.subtitle : "",
+    description: props.FormData ? props.FormData.description : "",
+    categorization: props.FormData ? props.FormData.categorization : 0,
+    type: props.FormData ? props.FormData.type : "",
+    personCount: props.FormData ? props.FormData.personCount : 0,
+    price: props.FormData ? props.FormData.price : 0,
+    location: props.FormData ? props.FormData.location : "",
+    postalCode: props.FormData ? props.FormData.postalCode : "",
+    imageUrl: props.FormData ? props.FormData.imageUrl : "",
+    freeCancelation: props.FormData ? props.FormData.freeCancelation : false,
+  };
+
   const [typeOfAccommodation, setTypeOfAccommodation] =
     useState<typeOfAccommodation>();
 
@@ -126,7 +137,10 @@ const NewPlacForm: React.FC<{
       });
     }
     if (name === "personCount") {
-      dispatchNewPlaceState({ type: "personCount_CHANGE", value: Number(value) });
+      dispatchNewPlaceState({
+        type: "personCount_CHANGE",
+        value: Number(value),
+      });
     } else {
       dispatchNewPlaceState({ type: "PRICE_CHANGE", value: Number(value) });
     }
@@ -189,12 +203,54 @@ const NewPlacForm: React.FC<{
     }
   };
 
-
+  if (props.FormData) {
+    console.log("yes");
+    /*
+    dispatchNewPlaceState({
+      type: "NAME_CHANGE",
+      value: props.FormData.title,
+    });
+    dispatchNewPlaceState({
+      type: "SHORT_CHANGE",
+      value: props.FormData.subtitle,
+    });
+    dispatchNewPlaceState({
+      type: "LONG_CHANGE",
+      value: props.FormData.description,
+    });
+    dispatchNewPlaceState({
+      type: "LOCATION_CHANGE",
+      value: props.FormData.location,
+    });
+    dispatchNewPlaceState({
+      type: "POSTAL_CHANGE",
+      value: props.FormData.postalCode,
+    });
+    dispatchNewPlaceState({
+      type: "URL_CHANGE",
+      value: props.FormData.imageUrl,
+    });
+    dispatchNewPlaceState({
+      type: "CATEGORIZATION_CHANGE",
+      value: Number(props.FormData.categorization),
+    });
+    dispatchNewPlaceState({
+      type: "personCount_CHANGE",
+      value: Number(props.FormData.personCount),
+    });
+    dispatchNewPlaceState({
+      type: "PRICE_CHANGE",
+      value: Number(props.FormData.price),
+    });
+    */
+  }
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    if(props.FormData == null ){
-      props.addAccToList(newPlaceState)
+    if (props.FormData == null) {
+      props.addAccToList(newPlaceState);
+    } else {
+      props.updateAccFromList(newPlaceState);
     }
     props.toggleSetFormAdd();
   };
