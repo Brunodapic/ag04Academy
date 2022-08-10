@@ -9,7 +9,8 @@ import { useEffect } from "react";
 export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
   setFormData:(data:any)=>void;
-  allAccommodations:FullAccommodationDetailsProps[]
+  allAccommodations:FullAccommodationDetailsProps[];
+  removeAccFromList:(accommodation:FullAccommodationDetailsProps)=>void
 }) {
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function PlaceCardWrap(props: {
           PlaceCardData={props.allAccommodations[i % COUNT]}
           image={i % 2 === 0 ? TreeHouse : ModernHouse}
           editForm={editForm}
+          removeAccFromList={props.removeAccFromList}
         />
       );
     }

@@ -13,16 +13,16 @@ import { typeOfAccommodation } from "../../models/typeOfAccommodation";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
 
 const newPlaceDefault = {
-  listingName: "",
-  shortDescription: "",
-  longDescription: "",
+  title: "",
+  subtitle: "",
+  description: "",
   categorization: 0,
-  typeOfAccommodation: null,
-  capacity: 0,
+  type: null,
+  personCount: 0,
   price: 0,
   location: "",
   postalCode: "",
-  imageURL: "",
+  imageUrl: "",
   cancellation: false,
 };
 
@@ -34,10 +34,10 @@ const newPlaceStateReducer = (state: any, action: any) => {
         ...state,
         categorization: action.value,
       };
-    case "CAPACITY_CHANGE":
+    case "personCount_CHANGE":
       return {
         ...state,
-        capacity: action.value,
+        personCount: action.value,
       };
     case "PRICE_CHANGE":
       return {
@@ -47,16 +47,16 @@ const newPlaceStateReducer = (state: any, action: any) => {
     case "NAME_CHANGE": {
       return {
         ...state,
-        listingName: action.value,
+        title: action.value,
       };
     }
     case "SHORT_CHANGE": {
-      return { ...state, shortDescription: action.value };
+      return { ...state, subtitle: action.value };
     }
     case "LONG_CHANGE": {
       return {
         ...state,
-        longDescription: action.value,
+        description: action.value,
       };
     }
     case "LOCATION_CHANGE": {
@@ -74,7 +74,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
     case "URL_CHANGE": {
       return {
         ...state,
-        imageURL: action.value,
+        imageUrl: action.value,
       };
     }
     case "TOGGLE_CHANGE": {
@@ -86,7 +86,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
     case "TYPEOFACCOMMODATION_CHANGE": {
       return {
         ...state,
-        typeOfAccommodation: action.value,
+        type: action.value,
       };
     }
     default:
@@ -125,8 +125,8 @@ const NewPlacForm: React.FC<{
         value: Number(value),
       });
     }
-    if (name === "Capacity") {
-      dispatchNewPlaceState({ type: "CAPACITY_CHANGE", value: Number(value) });
+    if (name === "personCount") {
+      dispatchNewPlaceState({ type: "personCount_CHANGE", value: Number(value) });
     } else {
       dispatchNewPlaceState({ type: "PRICE_CHANGE", value: Number(value) });
     }
@@ -209,7 +209,7 @@ const NewPlacForm: React.FC<{
           label="Listing name"
           variant="outlined"
           name="name"
-          value={newPlaceState.listingName}
+          value={newPlaceState.title}
           onChange={textChange}
         />
         <TextField
@@ -218,7 +218,7 @@ const NewPlacForm: React.FC<{
           label="Short description"
           name="short"
           variant="outlined"
-          value={newPlaceState.shortDescription}
+          value={newPlaceState.subtitle}
           onChange={textChange}
         />
         <TextField
@@ -229,7 +229,7 @@ const NewPlacForm: React.FC<{
           variant="outlined"
           multiline
           rows={4}
-          value={newPlaceState.longDescription}
+          value={newPlaceState.description}
           onChange={textChange}
         />
         <S.RatingForm>
@@ -247,10 +247,10 @@ const NewPlacForm: React.FC<{
         <TextField
           required
           type="number"
-          label="Capacity"
-          name="Capacity"
+          label="personCount"
+          name="personCount"
           variant="outlined"
-          value={newPlaceState.capacity}
+          value={newPlaceState.personCount}
           onChange={numberChange}
         />
         <TextField
@@ -286,7 +286,7 @@ const NewPlacForm: React.FC<{
           label="Listing image URL"
           name="url"
           variant="outlined"
-          value={newPlaceState.imageURL}
+          value={newPlaceState.imageUrl}
           onChange={textChange}
         />
         <FormControlLabel

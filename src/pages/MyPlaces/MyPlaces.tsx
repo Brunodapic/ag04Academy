@@ -6,35 +6,48 @@ import { AccommodationCardsListData } from "../../data/AccommodationCardsListDat
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
 
 export default function MyPlaces() {
+  const [formAdd, setFormAdd] = useState(false);
+  const [formData, setFormData] = useState<FullAccommodationDetailsProps>();
 
-  const [formAdd,setFormAdd]= useState(false)
-  const [formData,setFormData]= useState<FullAccommodationDetailsProps>()
+  const [allAccommodations, setAllAccommodations] = useState<
+    FullAccommodationDetailsProps[]
+  >(AccommodationCardsListData);
 
-  const [allAccommodations,setAllAccommodations]= useState<FullAccommodationDetailsProps[]>(AccommodationCardsListData)
+  const addAccToList = (accommodation: FullAccommodationDetailsProps) => {
+    setAllAccommodations(() => {
+      return [accommodation, ...allAccommodations];
+    });
+  };
 
-  const addAccToList=(accommodation:FullAccommodationDetailsProps)=>{
-    setAllAccommodations(()=>{
-      return [accommodation,...allAccommodations]
-    })
-  }
+  const removeAccFromList = (accommodation: FullAccommodationDetailsProps) => {
+    setAllAccommodations(
+      allAccommodations.filter(
+        (accommodationInList) =>
+          accommodationInList.title !== accommodation.title
+      )
+    );
+  };
 
-
-  const removeAccFromList=(accommodation:FullAccommodationDetailsProps)=>{
-    
-  }
-
-  
-  const toggleSetFormAdd=()=>{
-    setFormAdd(!formAdd)
-  }
+  const toggleSetFormAdd = () => {
+    setFormAdd(!formAdd);
+  };
 
   return (
     <MainWrapp>
-      {formAdd?
-      <NewPlacForm FormData={formData} toggleSetFormAdd={toggleSetFormAdd} addAccToList={addAccToList}/>
-      :
-      <PlaceCardWrap allAccommodations={allAccommodations} toggleSetFormAdd={toggleSetFormAdd} setFormData={setFormData}/>
-      }
+      {formAdd ? (
+        <NewPlacForm
+          FormData={formData}
+          toggleSetFormAdd={toggleSetFormAdd}
+          addAccToList={addAccToList}
+        />
+      ) : (
+        <PlaceCardWrap
+          allAccommodations={allAccommodations}
+          toggleSetFormAdd={toggleSetFormAdd}
+          setFormData={setFormData}
+          removeAccFromList={removeAccFromList}
+        />
+      )}
     </MainWrapp>
   );
 }

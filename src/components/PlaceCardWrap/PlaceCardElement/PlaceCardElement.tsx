@@ -10,7 +10,8 @@ import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 interface PlaceCardElementProps {
   PlaceCardData: FullAccommodationDetailsProps;
   image: string;
-  editForm: (data:any) => void;
+  editForm: (data: any) => void;
+  removeAccFromList: (accommodation: FullAccommodationDetailsProps) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
@@ -35,10 +36,18 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           {props.PlaceCardData.subtitle}
         </Typography>
         <CardActions className="plac-card-buttons">
-          <Button color="success" size="small" onClick={()=>{props.editForm(props.PlaceCardData)}}>
+          <Button
+            color="success"
+            size="small"
+            onClick={() => {
+              props.editForm(props.PlaceCardData);
+            }}
+          >
             EDIT
           </Button>
-          <Button color="error" size="small">
+          <Button color="error" size="small" onClick={()=>{
+            props.removeAccFromList(props.PlaceCardData)
+          }}>
             DELETE PLACE
           </Button>
         </CardActions>
