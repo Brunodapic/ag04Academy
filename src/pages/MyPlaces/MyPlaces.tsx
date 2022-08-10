@@ -6,6 +6,7 @@ import PlaceCardWrap from "../../components/PlaceCardWrap/PlaceCardWrap";
 export default function MyPlaces() {
 
   const [formAdd,setFormAdd]= useState(false)
+  const [formData,setFormData]= useState()
 
   const toggleSetFormAdd=()=>{
     setFormAdd(!formAdd)
@@ -14,9 +15,9 @@ export default function MyPlaces() {
   return (
     <MainWrapp>
       {formAdd?
-      <NewPlacForm NewPlaceFormUse={function (data: string): void {} } />
+      <NewPlacForm data={formData} toggleSetFormAdd={toggleSetFormAdd}/>
       :
-      <PlaceCardWrap toggleSetFormAdd={toggleSetFormAdd}/>
+      <PlaceCardWrap toggleSetFormAdd={toggleSetFormAdd} setFormData={setFormData}/>
       }
     </MainWrapp>
   );

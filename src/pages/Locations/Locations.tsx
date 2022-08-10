@@ -1,5 +1,4 @@
-import DisplayFooter from "../../components/DisplayFooter/DisplayFooter";
-import AdvancedSearch from "../../components/Search/AdvancedSearch";
+import { useParams } from "react-router-dom";
 import SimpleSearch from "../../components/Search/SimpleSearch";
 
 export default function Locations() {
@@ -13,7 +12,6 @@ export default function Locations() {
     <div>
       <h2>All Locations</h2>
       <SimpleSearch SearchResult={SearchResult} />
-      <AdvancedSearch SearchResult={SearchResult} />
     </div>
   );
 }

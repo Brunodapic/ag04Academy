@@ -4,11 +4,20 @@ import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
+import NewPlacForm from "../NewPlaceForm/NewPlaceForm";
 
 
 export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
+  setFormData:(data:any)=>void;
 }) {
+
+  const editForm= (data:any)=>{
+    console.log(data)
+    props.setFormData(data)
+    props.toggleSetFormAdd()
+  }
+
   const COUNT = 2;
   const getCards = (count: number) => {
     let content = [];
@@ -20,6 +29,7 @@ export default function PlaceCardWrap(props: {
           location={PlaceCardData[i % 2].location}
           subtitle={PlaceCardData[i % 2].subtitle}
           image={i % 2 === 0 ? TreeHouse : ModernHouse}
+          editForm={editForm}
         />
       );
     }

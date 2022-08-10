@@ -2,7 +2,7 @@ import * as S from "./SearchStyledComponents";
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import TypeOfAccommodationComponent from "./TypeOfAccommodationComponent";
-import typeOfAccommodation from "../../models/typeOfAccommodation";
+import { typeOfAccommodation } from "../../models/typeOfAccommodation";
 
 interface reservationFormInterface {
   typeOfAccommodation: typeOfAccommodation | undefined;
@@ -13,13 +13,25 @@ interface reservationFormInterface {
 
 const AdvancedSearch: React.FC<{
   SearchResult: (data: reservationFormInterface) => void;
+  data?: any;
 }> = (props) => {
-  const [typeOfAccommodation, setTypeOfAccommodation] =
-    useState<typeOfAccommodation>();
-  const [number, setNumber] = useState(0);
-  const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
-  const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
 
+
+  const [typeOfAccommodation, setTypeOfAccommodation] =
+    useState<typeOfAccommodation>(
+      props.data ? props.data.state.data.typeOfAccommodation  : undefined
+    );
+  const [number, setNumber] = useState(
+    props.data ? props.data.state.data.number : 0
+  );
+  const [checkIn, setCheckIn] = useState(
+    props.data ? props.data.state.data.checkIn : FormatDate(new Date())
+  );
+  const [checkOut, setCheckOut] = useState(
+    props.data ? props.data.state.data.checkOut : FormatDate(new Date())
+  );
+
+  
   function FormatDate(todayDate2: Date) {
     const todayDate = new Date(todayDate2);
     const formatDate =
@@ -57,7 +69,7 @@ const AdvancedSearch: React.FC<{
     };
 
     props.SearchResult(reservationForm);
-    setTypeOfAccommodation(undefined);
+
     setNumber(0);
     setCheckIn(FormatDate(new Date()));
     setCheckOut(FormatDate(new Date()));
@@ -103,13 +115,14 @@ const AdvancedSearch: React.FC<{
 
         <TypeOfAccommodationComponent
           setTypeOfAccommodation={setTypeOfAccommodation}
+          typeOfAccommodation={typeOfAccommodation}
         />
         <S.AccommodationSearchButton
           sx={{ backgroundColor: "#40E0D0", color: "white" }}
           color="primary"
           onClick={() => advanceSearchSubmit()}
         >
-           Search
+          Search
         </S.AccommodationSearchButton>
       </S.AccommodationSearchInner>
     </div>

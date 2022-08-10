@@ -2,18 +2,18 @@ import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import * as S from "./SearchStyledComponents";
 import TypeOfAccommodationComponent from "./TypeOfAccommodationComponent";
-import typeOfAccommodation from "../../models/typeOfAccommodation";
-import accommodationFormInterface from "../../models/typeOfAccommodation";
+import {typeOfAccommodation} from "../../models/typeOfAccommodation";
+import {accommodationFormInterface} from "../../models/typeOfAccommodation";
 
 const AccommodationSearch: React.FC<{
   AccommodationSearchResult: (data: accommodationFormInterface) => void;
 }> = (props) => {
-  const [location, setLocation] = useState("");
-  const [typeOfAccommodation, setTypeOfAccommodation] =
-    useState<typeOfAccommodation>();
-  const [number, setNumber] = useState(0);
-  const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
-  const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
+  const [location, setLocation] = useState<string>("");
+  const [typeOfAccommodationn, setTypeOfAccommodation] =
+    useState<typeOfAccommodation | any>();
+  const [number, setNumber] = useState<number>(0);
+  const [checkIn, setCheckIn] = useState<string>(FormatDate(new Date()));
+  const [checkOut, setCheckOut] = useState<string>(FormatDate(new Date()));
 
   function FormatDate(todayDate2: Date) {
     const todayDate = new Date(todayDate2);
@@ -49,14 +49,13 @@ const AccommodationSearch: React.FC<{
   const accommodationSearchSubmit = () => {
     const reservationForm = {
       location: location,
-      typeOfAccommodation: typeOfAccommodation,
+      typeOfAccommodation: typeOfAccommodationn,
       number: number,
       checkIn: checkIn,
       checkOut: checkOut,
     };
 
-    //props.SearchResult(reservationForm);
-    console.log(reservationForm);
+    props.AccommodationSearchResult(reservationForm);
     setLocation("");
     setTypeOfAccommodation(undefined);
     setNumber(0);

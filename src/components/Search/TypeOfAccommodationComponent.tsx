@@ -5,11 +5,11 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import typeOfAccommodation from "../../models/typeOfAccommodation";
+import {typeOfAccommodation} from "../../models/typeOfAccommodation";
 import React, { useEffect } from "react";
 
 export default function TypeOfAccommodationComponent(props: any) {
-  const [accommodation, setAccommodation] = React.useState("");
+  const [accommodation, setAccommodation] = React.useState(props?.typeOfAccommodation?props.typeOfAccommodation:"");
 
   //nisam siguran jeli ovo najbolji način , možda sam mogao slati submit preko propa pa tako?
   useEffect(() => {

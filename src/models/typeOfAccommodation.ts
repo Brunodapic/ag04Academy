@@ -2,14 +2,12 @@ export interface accommodationFormInterface {
   location: string;
   typeOfAccommodation: typeOfAccommodation | undefined;
   number: number;
-  checkIn: Date;
-  checkOut: Date;
+  checkIn: string;
+  checkOut: string;
 }
 
-enum typeOfAccommodation {
+export enum typeOfAccommodation {
   Room,
   House,
   Apartman,
 }
-
-export default typeOfAccommodation;

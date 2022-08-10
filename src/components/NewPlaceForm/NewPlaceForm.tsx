@@ -9,7 +9,7 @@ import {
 import { useEffect, useReducer, useState } from "react";
 import TypeOfAccommodationComponent from "../Search/TypeOfAccommodationComponent";
 import * as S from "./NewPlacFormStyle";
-import typeOfAccommodation from "../../models/typeOfAccommodation";
+import {typeOfAccommodation} from "../../models/typeOfAccommodation";
 
 const newPlaceDefault = {
   listingName: "",
@@ -95,9 +95,12 @@ const newPlaceStateReducer = (state: any, action: any) => {
   return newPlaceDefault;
 };
 
-const NewPlacForm: React.FC<{ NewPlaceFormUse: (data: string) => void }> = (
+const NewPlacForm: React.FC<{ data: any , toggleSetFormAdd: () => void }> = (
   props
 ) => {
+
+  console.log(props.data)
+
   const [typeOfAccommodation, setTypeOfAccommodation] =
     useState<typeOfAccommodation>();
 
@@ -186,10 +189,18 @@ const NewPlacForm: React.FC<{ NewPlaceFormUse: (data: string) => void }> = (
     }
   };
 
+
+  if(props.data !=null){
+
+  }
+
   const submitHandle = (event: any) => {
     event.preventDefault();
     console.log(newPlaceState);
+    props.toggleSetFormAdd()
   };
+
+
 
   return (
     <S.NewPlaceFormWrap>
@@ -302,7 +313,7 @@ const NewPlacForm: React.FC<{ NewPlaceFormUse: (data: string) => void }> = (
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
           className="button-add-new-place"
         >
-          ADD NEW PLACE
+          {props.data==null? "ADD NEW PLACE" : "FINISH EDIT"}
         </Button>
       </S.NewPlaceForm>
     </S.NewPlaceFormWrap>

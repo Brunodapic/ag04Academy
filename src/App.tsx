@@ -17,12 +17,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/locations" element={<Locations />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/favorites" element={<Favorites />}>
+            <Route path=":location" element={<Locations />} />
+          </Route>
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
           <Route path="/accommodation" element={<AccommodationPage />} />
         </Routes>
-        <DisplayFooter/>
+        <DisplayFooter />
       </Router>
     </div>
   );

@@ -11,6 +11,7 @@ interface PlaceCardElementProps {
   location: string;
   subtitle: string;
   image: string;
+  editForm: (data:any) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
@@ -35,7 +36,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           {props.subtitle}
         </Typography>
         <CardActions className="plac-card-buttons">
-          <Button color="success" size="small">
+          <Button color="success" size="small" onClick={()=>{props.editForm(props)}}>
             EDIT
           </Button>
           <Button color="error" size="small">
