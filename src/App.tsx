@@ -16,10 +16,13 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/locations" element={<Locations />} />
-          <Route path="/favorites" element={<Favorites />}>
-            <Route path=":location" element={<Locations />} />
+          <Route path="/locations" element={<Locations byLocation={true}/>} />
+          <Route path="/locations/homes" element={<Locations byLocation={false} />} >
+              <Route path=":location" element={<Locations byLocation={false} />} />
           </Route>
+
+          <Route path="/favorites" element={<Favorites />} />
+            
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
           <Route path="/accommodation" element={<AccommodationPage />} />

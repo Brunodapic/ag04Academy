@@ -9,7 +9,7 @@ const AccommodationSearch: React.FC<{
   AccommodationSearchResult: (data: accommodationFormInterface) => void;
 }> = (props) => {
   const [location, setLocation] = useState<string>("");
-  const [typeOfAccommodationn, setTypeOfAccommodation] =
+  const [type, setType] =
     useState<typeOfAccommodation | any>();
   const [number, setNumber] = useState<number>(0);
   const [checkIn, setCheckIn] = useState<string>(FormatDate(new Date()));
@@ -49,7 +49,7 @@ const AccommodationSearch: React.FC<{
   const accommodationSearchSubmit = () => {
     const reservationForm = {
       location: location,
-      typeOfAccommodation: typeOfAccommodationn,
+      typeOfAccommodation: type,
       number: number,
       checkIn: checkIn,
       checkOut: checkOut,
@@ -57,7 +57,7 @@ const AccommodationSearch: React.FC<{
 
     props.AccommodationSearchResult(reservationForm);
     setLocation("");
-    setTypeOfAccommodation(undefined);
+    setType(undefined);
     setNumber(0);
     setCheckIn(FormatDate(new Date()));
     setCheckOut(FormatDate(new Date()));
@@ -109,7 +109,7 @@ const AccommodationSearch: React.FC<{
           onChange={numberChange}
         />
         <TypeOfAccommodationComponent
-          setTypeOfAccommodation={setTypeOfAccommodation}
+          setType={setType}
         />
         <S.AccommodationSearchButton
           sx={{ backgroundColor: "#40E0D0", color: "white" }}

@@ -1,15 +1,15 @@
-import SimpleSearch from "../../components/Search/SimpleSearch";
+import { useLocation, useParams } from "react-router-dom";
+import AccommodationByLocation from "../../components/AccommodationByLocation/AccommodationByLocation";
+import AllLocations from "../../components/AllLocations/AllLocations";
 
-export default function Locations() {
+export default function Locations(props: { byLocation: boolean }) {
+  const data = useLocation();
+  //var dataSend = data.state as accommodationFormInterface;
+  const { location } = useParams();
   
-  const SearchResult = (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div>
-      <h2>All Locations</h2>
-      <SimpleSearch SearchResult={SearchResult} />
+      {props.byLocation ? <AllLocations /> : <AccommodationByLocation location={location} data={data} /> }
     </div>
   );
 }

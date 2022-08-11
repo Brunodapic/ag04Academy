@@ -14,7 +14,8 @@ export default function TypeOfAccommodationComponent(props: any) {
   const keys = Object.keys(typeOfAccommodation).filter((v) => isNaN(Number(v)));
   const handleChange = (event: SelectChangeEvent) => {
     setAccommodation(event.target.value as string);
-    props.setTypeOfAccommodation(event.target.value as string)
+    props.setType(event.target.value as string)
+
   };
 
   return (

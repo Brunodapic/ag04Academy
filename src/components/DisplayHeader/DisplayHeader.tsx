@@ -8,7 +8,7 @@ export default function DisplayHeader() {
   let navigate = useNavigate();
 
   const AccommodationSearchResult = (data: accommodationFormInterface) => {
-    navigate(`/favorites/${data.location}`,{ state: { data } })
+    navigate(`/locations/homes/${data.location}`,{ state: { data } })
   };
 
   return (
