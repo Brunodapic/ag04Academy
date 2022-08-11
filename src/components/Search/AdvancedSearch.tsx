@@ -13,7 +13,7 @@ interface reservationFormInterface {
 
 const AdvancedSearch: React.FC<{
   SearchResult: (data: reservationFormInterface) => void;
-  data?: any;
+  data: any;
 }> = (props) => {
 
 

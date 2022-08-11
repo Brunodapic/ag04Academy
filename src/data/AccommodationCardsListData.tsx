@@ -1,4 +1,3 @@
-import React from "react";
 import FullAccommodationDetailsProps from "../models/accommodationModel";
 
 export var AccommodationCardsListData: FullAccommodationDetailsProps[]=

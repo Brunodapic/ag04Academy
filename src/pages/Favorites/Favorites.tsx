@@ -1,11 +1,10 @@
 import { useLocation, useParams } from "react-router-dom";
 import MainWrapp from "../../components/MainWrapp/MainWrapp";
 import AdvancedSearch from "../../components/Search/AdvancedSearch";
-import { accommodationFormInterface } from "../../models/typeOfAccommodation";
 
 export default function Favorites() {
   const data = useLocation();
-  var dataSend = data.state as accommodationFormInterface;
+  //var dataSend = data.state as accommodationFormInterface;
   const { location } = useParams();
   const SearchResult = (data: any) => {
     console.log(data);
