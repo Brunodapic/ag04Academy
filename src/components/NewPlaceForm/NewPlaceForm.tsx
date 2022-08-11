@@ -136,7 +136,7 @@ const NewPlacForm: React.FC<{
         value: Number(value),
       });
     }
-    if (name === "personCount") {
+    else if (name === "personCount") {
       dispatchNewPlaceState({
         type: "personCount_CHANGE",
         value: Number(value),
@@ -202,48 +202,6 @@ const NewPlacForm: React.FC<{
       }
     }
   };
-
-  if (props.FormData) {
-    console.log("yes");
-    /*
-    dispatchNewPlaceState({
-      type: "NAME_CHANGE",
-      value: props.FormData.title,
-    });
-    dispatchNewPlaceState({
-      type: "SHORT_CHANGE",
-      value: props.FormData.subtitle,
-    });
-    dispatchNewPlaceState({
-      type: "LONG_CHANGE",
-      value: props.FormData.description,
-    });
-    dispatchNewPlaceState({
-      type: "LOCATION_CHANGE",
-      value: props.FormData.location,
-    });
-    dispatchNewPlaceState({
-      type: "POSTAL_CHANGE",
-      value: props.FormData.postalCode,
-    });
-    dispatchNewPlaceState({
-      type: "URL_CHANGE",
-      value: props.FormData.imageUrl,
-    });
-    dispatchNewPlaceState({
-      type: "CATEGORIZATION_CHANGE",
-      value: Number(props.FormData.categorization),
-    });
-    dispatchNewPlaceState({
-      type: "personCount_CHANGE",
-      value: Number(props.FormData.personCount),
-    });
-    dispatchNewPlaceState({
-      type: "PRICE_CHANGE",
-      value: Number(props.FormData.price),
-    });
-    */
-  }
 
   const submitHandle = (event: any) => {
     event.preventDefault();

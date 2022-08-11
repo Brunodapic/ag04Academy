@@ -31,13 +31,13 @@ export default function MyPlaces() {
   const updateAccFromList = (accommodation: FullAccommodationDetailsProps) => {
     setAllAccommodations((prevAccommodation) =>
     prevAccommodation.map((acc) => {
+        //nisam 100% zadovoljan ovom implementacijom jer se ne moze mijenjati ime
+        // ali kako nema id, ovo mi je jedino plao na pamet
         return acc.title === accommodation.title ? accommodation : acc;
       })
     );
   };
 
-  console.log(allAccommodations)
-  
   const toggleSetFormAdd = () => {
     setFormAdd(!formAdd);
   };
