@@ -95,8 +95,6 @@ const newPlaceStateReducer = (state: any, action: any) => {
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
-  addAccToList: (accommodation: FullAccommodationDetailsProps) => void;
-  updateAccFromList: (accommodation: FullAccommodationDetailsProps) => void;
 }> = (props) => {
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
@@ -112,7 +110,7 @@ const NewPlacForm: React.FC<{
     freeCancelation: props.FormData ? props.FormData.freeCancelation : false,
   };
 
-  const [typeOfAccommodation, setTypeOfAccommodation] =
+  const [type, setType] =
     useState<typeOfAccommodation>();
 
   const [newPlaceState, dispatchNewPlaceState] = useReducer(
@@ -123,9 +121,9 @@ const NewPlacForm: React.FC<{
   useEffect(() => {
     dispatchNewPlaceState({
       type: "TYPEOFACCOMMODATION_CHANGE",
-      value: typeOfAccommodation,
+      value: type,
     });
-  }, [typeOfAccommodation]);
+  }, [type]);
 
   const numberChange = (event: any) => {
     let name = event.target.name;
@@ -205,11 +203,7 @@ const NewPlacForm: React.FC<{
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    if (props.FormData == null) {
-      props.addAccToList(newPlaceState);
-    } else {
-      props.updateAccFromList(newPlaceState);
-    }
+    console.log(newPlaceState)
     props.toggleSetFormAdd();
   };
 
@@ -256,7 +250,7 @@ const NewPlacForm: React.FC<{
         </S.RatingForm>
         <TypeOfAccommodationComponent
           required
-          setTypeOfAccommodation={setTypeOfAccommodation}
+          setType={setType}
         />
         <TextField
           required

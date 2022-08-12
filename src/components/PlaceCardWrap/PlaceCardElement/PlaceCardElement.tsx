@@ -11,7 +11,6 @@ interface PlaceCardElementProps {
   PlaceCardData: FullAccommodationDetailsProps;
   image: string;
   editForm: (data: any) => void;
-  removeAccFromList: (accommodation: FullAccommodationDetailsProps) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
@@ -45,9 +44,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           >
             EDIT
           </Button>
-          <Button color="error" size="small" onClick={()=>{
-            props.removeAccFromList(props.PlaceCardData)
-          }}>
+          <Button color="error" size="small" >
             DELETE PLACE
           </Button>
         </CardActions>

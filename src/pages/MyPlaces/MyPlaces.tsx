@@ -13,30 +13,6 @@ export default function MyPlaces() {
     FullAccommodationDetailsProps[]
   >(AccommodationCardsListData);
 
-  const addAccToList = (accommodation: FullAccommodationDetailsProps) => {
-    setAllAccommodations(() => {
-      return [accommodation, ...allAccommodations];
-    });
-  };
-
-  const removeAccFromList = (accommodation: FullAccommodationDetailsProps) => {
-    setAllAccommodations(
-      allAccommodations.filter(
-        (accommodationInList) =>
-          accommodationInList.title !== accommodation.title
-      )
-    );
-  };
-
-  const updateAccFromList = (accommodation: FullAccommodationDetailsProps) => {
-    setAllAccommodations((prevAccommodation) =>
-    prevAccommodation.map((acc) => {
-        //nisam 100% zadovoljan ovom implementacijom jer se ne moze mijenjati ime
-        // ali kako nema id, ovo mi je jedino plao na pamet
-        return acc.title === accommodation.title ? accommodation : acc;
-      })
-    );
-  };
 
   const toggleSetFormAdd = () => {
     setFormAdd(!formAdd);
@@ -48,15 +24,12 @@ export default function MyPlaces() {
         <NewPlacForm
           FormData={formData}
           toggleSetFormAdd={toggleSetFormAdd}
-          addAccToList={addAccToList}
-          updateAccFromList={updateAccFromList}
         />
       ) : (
         <PlaceCardWrap
           allAccommodations={allAccommodations}
           toggleSetFormAdd={toggleSetFormAdd}
           setFormData={setFormData}
-          removeAccFromList={removeAccFromList}
         />
       )}
     </MainWrapp>

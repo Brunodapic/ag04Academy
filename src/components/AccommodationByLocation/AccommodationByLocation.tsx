@@ -9,7 +9,6 @@ const AccommodationByLocation: React.FC<{
 
   return (
     <MainWrapp>
-      {/* ako ima lokacija u url-u i ima podataka samo se onda generira AdvancedSearch s nadopunjenima podatcima   */}
       {props.location && props.data.state ? (
         <AccommodationByData location={props.location} data={props.data} />
       ) : (

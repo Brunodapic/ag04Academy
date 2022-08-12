@@ -10,12 +10,9 @@ export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
   setFormData:(data:FullAccommodationDetailsProps)=>void;
   allAccommodations:FullAccommodationDetailsProps[];
-  removeAccFromList:(accommodation:FullAccommodationDetailsProps)=>void
 }) {
 
-  useEffect(() => {
-    console.log(props.allAccommodations)
-  }, [props.allAccommodations]);
+
 
   const editForm= (data:FullAccommodationDetailsProps)=>{
     props.setFormData(data)
@@ -32,7 +29,6 @@ export default function PlaceCardWrap(props: {
           PlaceCardData={props.allAccommodations[i % COUNT]}
           image={i % 2 === 0 ? TreeHouse : ModernHouse}
           editForm={editForm}
-          removeAccFromList={props.removeAccFromList}
         />
       );
     }
