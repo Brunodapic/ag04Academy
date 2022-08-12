@@ -1,19 +1,15 @@
-import DisplayFooter from "../../components/DisplayFooter/DisplayFooter";
-import AdvancedSearch from "../../components/Search/AdvancedSearch";
-import SimpleSearch from "../../components/Search/SimpleSearch";
+import { useLocation, useParams } from "react-router-dom";
+import AccommodationByLocation from "../../components/AccommodationByLocation/AccommodationByLocation";
+import AllLocations from "../../components/AllLocations/AllLocations";
 
-export default function Locations() {
-  //ovdje sam stavio ostala dva Search forma za lakši pregled
-  // zato je i data any
-  const SearchResult = (data: any) => {
-    console.log(data);
-  };
-
+export default function Locations(props: { byLocation: boolean }) {
+  const data = useLocation();
+  //var dataSend = data.state as accommodationFormInterface;
+  const { location } = useParams();
+  
   return (
     <div>
-      <h2>All Locations</h2>
-      <SimpleSearch SearchResult={SearchResult} />
-      <AdvancedSearch SearchResult={SearchResult} />
+      {props.byLocation ? <AllLocations /> : <AccommodationByLocation location={location} data={data} /> }
     </div>
   );
 }

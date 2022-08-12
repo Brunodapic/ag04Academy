@@ -1,23 +1,34 @@
 import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
-import PlaceCardData from "../../data/PlaceCardData.json";
 import TreeHouse from "../../images/TreeHouse.jpeg";
 import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import FullAccommodationDetailsProps from "../../models/accommodationModel";
+import { useEffect } from "react";
 
-export default function PlaceCardWrap() {
-  const COUNT = 4;
+export default function PlaceCardWrap(props: {
+  toggleSetFormAdd: () => void;
+  setFormData:(data:FullAccommodationDetailsProps)=>void;
+  allAccommodations:FullAccommodationDetailsProps[];
+}) {
+
+
+
+  const editForm= (data:FullAccommodationDetailsProps)=>{
+    props.setFormData(data)
+    props.toggleSetFormAdd()
+  }
+
+  const COUNT = props.allAccommodations.length;
   const getCards = (count: number) => {
     let content = [];
     for (let i = 0; i < count; i++) {
       content.push(
         <PlaceCardElement
           key={i}
-          title={PlaceCardData[i % 2].title}
-          location={PlaceCardData[i % 2].location}
-          subtitle={PlaceCardData[i % 2].subtitle}
+          PlaceCardData={props.allAccommodations[i % COUNT]}
           image={i % 2 === 0 ? TreeHouse : ModernHouse}
+          editForm={editForm}
         />
       );
     }
@@ -28,9 +39,13 @@ export default function PlaceCardWrap() {
     <div className="plac-card-wrap">
       <div className="plac-card-header">
         <h2>My places</h2>
-        <Link to="locations" style={{ textDecoration: "none" }}>
-          <Button className="ViewAll"> View All My Places &rarr;</Button>
-        </Link>
+        <Button
+          sx={{ backgroundColor: "#40E0D0", color: "white" }}
+          className="button-add-new-place"
+          onClick={props.toggleSetFormAdd}
+        >
+          ADD NEW PLACE
+        </Button>
       </div>
 
       <div className="plac-card-wrap-gallery">{getCards(COUNT)}</div>

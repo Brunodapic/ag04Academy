@@ -5,22 +5,17 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import typeOfAccommodation from "../../models/typeOfAccommodation";
-import React, { useEffect } from "react";
+import { useState } from "react";
+import {typeOfAccommodation} from "../../models/typeOfAccommodation";
 
 export default function TypeOfAccommodationComponent(props: any) {
-  const [accommodation, setAccommodation] = React.useState("");
-
-  //nisam siguran jeli ovo najbolji način , možda sam mogao slati submit preko propa pa tako?
-  useEffect(() => {
-    props.setTypeOfAccommodation
-      ? props.setTypeOfAccommodation(accommodation)
-      : console.log();
-  }, [accommodation]);
+  const [accommodation, setAccommodation] = useState(props?.typeOfAccommodation?props.typeOfAccommodation:"");
 
   const keys = Object.keys(typeOfAccommodation).filter((v) => isNaN(Number(v)));
   const handleChange = (event: SelectChangeEvent) => {
     setAccommodation(event.target.value as string);
+    props.setType(event.target.value as string)
+
   };
 
   return (

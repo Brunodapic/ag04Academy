@@ -5,12 +5,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./style.css";
+import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 
 interface PlaceCardElementProps {
-  title: string;
-  location: string;
-  subtitle: string;
+  PlaceCardData: FullAccommodationDetailsProps;
   image: string;
+  editForm: (data: any) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
@@ -26,19 +26,25 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.title}
+          {props.PlaceCardData.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.location}
+          {props.PlaceCardData.location}
         </Typography>
         <Typography variant="body2" color="text.primary">
-          {props.subtitle}
+          {props.PlaceCardData.subtitle}
         </Typography>
         <CardActions className="plac-card-buttons">
-          <Button color="success" size="small">
+          <Button
+            color="success"
+            size="small"
+            onClick={() => {
+              props.editForm(props.PlaceCardData);
+            }}
+          >
             EDIT
           </Button>
-          <Button color="error" size="small">
+          <Button color="error" size="small" >
             DELETE PLACE
           </Button>
         </CardActions>
