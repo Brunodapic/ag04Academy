@@ -17,7 +17,10 @@ export default function ReservationForm({
   getDataFromForm: (data: reservationFormInterface) => void;
 }) {
   const [name, setName] = useState("");
+  const nameValidation = name.length < 300 && name.length >1;
   const [email, setEmail] = useState("");
+  const emailValidation = email.includes("@") && email.length < 300 && email.length > 1;
+
   const [number, setNumber] = useState(0);
 
   const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
@@ -83,6 +86,12 @@ export default function ReservationForm({
           label="Full Name"
           variant="outlined"
           value={name}
+          error={!nameValidation}
+          helperText={
+            nameValidation
+              ? ""
+              : "Full name should have max 300 characters."
+          }
           onChange={nameChange}
         />
         <TextField
@@ -90,6 +99,12 @@ export default function ReservationForm({
           label="Email address"
           variant="outlined"
           value={email}
+          error={!emailValidation}
+          helperText={
+            emailValidation
+              ? ""
+              : "Email address should have max 100 character and be valid email address"
+          }
           onChange={emailChange}
         />
         <TextField
@@ -98,7 +113,6 @@ export default function ReservationForm({
           variant="outlined"
           InputProps={{
             inputProps: {
-              max: 20,
               min: 0,
             },
           }}
@@ -116,7 +130,6 @@ export default function ReservationForm({
             value={checkIn}
             onChange={checkInChange}
           />
-
           <TextField
             id="date"
             label="Check out"
@@ -132,6 +145,7 @@ export default function ReservationForm({
           <S.ReservationFormSubmitButton
             variant="contained"
             onClick={() => reservationFromSubmit()}
+            disabled={!emailValidation || !nameValidation}
           >
             Book your stay
           </S.ReservationFormSubmitButton>
