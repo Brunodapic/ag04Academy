@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CityCard from "./CityCard/CityCard";
 import "./style.css";
 import CityCardData from "../../data/CityCardData.json";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { api } from "../../utils/api";
+import useBackend from "../../hooks/useBackend";
+import getUsers from "../../hooks/useAxios";
 
 export default function CityCardWrap() {
+
+   getUsers()
+
+  const seeData = (data: any) => {
+    console.log(data);
+  };
+
+  const {
+    isLoading,
+    error,
+    sendRequest: getData,
+  } = useBackend(
+    {
+      url: api,
+      method: "GET",
+      headers: undefined,
+      body: undefined,
+    },
+    seeData
+  );
+
+  console.log(isLoading);
+  console.log(error);
+  console.log(getData);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const COUNT = 6;
   const getCards = (count: number) => {
     let content = [];

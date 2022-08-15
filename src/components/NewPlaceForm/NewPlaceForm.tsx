@@ -66,7 +66,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
     case "TOGGLE_CHANGE": {
       return {
         ...state,
-        cancellation: !state.cancellation,
+        freeCancelation: !state.freeCancelation,
       };
     }
     case "TYPEOFACCOMMODATION_CHANGE": {
@@ -80,14 +80,14 @@ const newPlaceStateReducer = (state: any, action: any) => {
         title: "",
         subtitle: "",
         description: "",
-        categorization: 0,
+        categorization: 1,
         type: null,
-        personCount: 0,
-        price: 0,
+        personCount: 1,
+        price: "",
         location: "",
         postalCode: "",
         imageUrl: "",
-        cancellation: false,
+        freeCancelation: true,
       };
   }
 };
@@ -100,18 +100,20 @@ const NewPlacForm: React.FC<{
     title: props.FormData ? props.FormData.title : "",
     subtitle: props.FormData ? props.FormData.subtitle : "",
     description: props.FormData ? props.FormData.description : "",
-    categorization: props.FormData ? props.FormData.categorization : 0,
+    categorization: props.FormData ? props.FormData.categorization : 1,
     type: props.FormData ? props.FormData.type : "",
-    personCount: props.FormData ? props.FormData.personCount : 0,
-    price: props.FormData ? props.FormData.price : 0,
+    personCount: props.FormData ? props.FormData.personCount : 1,
+    price: props.FormData ? props.FormData.price : "",
     location: props.FormData ? props.FormData.location : "",
     postalCode: props.FormData ? props.FormData.postalCode : "",
     imageUrl: props.FormData ? props.FormData.imageUrl : "",
-    freeCancelation: props.FormData ? props.FormData.freeCancelation : false,
+    freeCancelation: props.FormData ? props.FormData.freeCancelation : true,
   };
 
-  const [type, setType] =
-    useState<typeOfAccommodation>();
+  const [type, setType] = useState<typeOfAccommodation>();
+  const [nameValidation, setNameValidation] = useState(false);
+  const [subtitleValidation, setSubtitleValidation] = useState(false);
+  const [locationValidation, setLocationValidation] = useState(false);
 
   const [newPlaceState, dispatchNewPlaceState] = useReducer(
     newPlaceStateReducer,
@@ -133,8 +135,7 @@ const NewPlacForm: React.FC<{
         type: "CATEGORIZATION_CHANGE",
         value: Number(value),
       });
-    }
-    else if (name === "personCount") {
+    } else if (name === "personCount") {
       dispatchNewPlaceState({
         type: "personCount_CHANGE",
         value: Number(value),
@@ -153,17 +154,27 @@ const NewPlacForm: React.FC<{
     let value = event.target.value;
     switch (name) {
       case "name": {
-        dispatchNewPlaceState({
-          type: "NAME_CHANGE",
-          value: value,
-        });
+        if (value.length < 100) {
+          nameValidation && setNameValidation(false);
+          dispatchNewPlaceState({
+            type: "NAME_CHANGE",
+            value: value,
+          });
+        } else {
+          setNameValidation(true);
+        }
         break;
       }
       case "short": {
-        dispatchNewPlaceState({
-          type: "SHORT_CHANGE",
-          value: value,
-        });
+        if (value.length < 100) {
+          nameValidation && setSubtitleValidation(false);
+          dispatchNewPlaceState({
+            type: "SHORT_CHANGE",
+            value: value,
+          });
+        } else {
+          setSubtitleValidation(true);
+        }
         break;
       }
       case "long": {
@@ -174,10 +185,14 @@ const NewPlacForm: React.FC<{
         break;
       }
       case "location": {
+        if (value.length < 100) {
+          locationValidation && setLocationValidation(false);
         dispatchNewPlaceState({
           type: "LOCATION_CHANGE",
           value: value,
-        });
+        });}else{
+          setLocationValidation(true)
+        }
         break;
       }
       case "postal": {
@@ -203,8 +218,8 @@ const NewPlacForm: React.FC<{
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    console.log(newPlaceState)
-    props.toggleSetFormAdd();
+    console.log(newPlaceState);
+    nameValidation && locationValidation && subtitleValidation && props.toggleSetFormAdd();
   };
 
   return (
@@ -217,6 +232,8 @@ const NewPlacForm: React.FC<{
           label="Listing name"
           variant="outlined"
           name="name"
+          error={nameValidation}
+          helperText={nameValidation && "max 100 characters"}
           value={newPlaceState.title}
           onChange={textChange}
         />
@@ -226,6 +243,8 @@ const NewPlacForm: React.FC<{
           label="Short description"
           name="short"
           variant="outlined"
+          error={subtitleValidation}
+          helperText={subtitleValidation && "max 200 characters"}
           value={newPlaceState.subtitle}
           onChange={textChange}
         />
@@ -248,10 +267,7 @@ const NewPlacForm: React.FC<{
             onChange={numberChange}
           />
         </S.RatingForm>
-        <TypeOfAccommodationComponent
-          required
-          setType={setType}
-        />
+        <TypeOfAccommodationComponent required setType={setType} />
         <TextField
           required
           type="number"
@@ -260,6 +276,11 @@ const NewPlacForm: React.FC<{
           variant="outlined"
           value={newPlaceState.personCount}
           onChange={numberChange}
+          InputProps={{
+            inputProps: {
+              min: 1,
+            },
+          }}
         />
         <TextField
           required
@@ -271,11 +292,14 @@ const NewPlacForm: React.FC<{
           onChange={numberChange}
         />
         <TextField
+        
           required
           type="text"
           label="Location"
           name="location"
           variant="outlined"
+          error={locationValidation}
+          helperText={locationValidation && "max 150 characters"}
           value={newPlaceState.location}
           onChange={textChange}
         />
@@ -302,7 +326,8 @@ const NewPlacForm: React.FC<{
           control={
             <Switch
               color="primary"
-              value={newPlaceState.cancellation}
+              checked={newPlaceState.freeCancelation}
+              value={newPlaceState.freeCancelation}
               onChange={toggleChange}
             />
           }
