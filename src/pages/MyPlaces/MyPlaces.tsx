@@ -14,6 +14,7 @@ export default function MyPlaces() {
   >(AccommodationCardsListData);
 
 
+  
   const toggleSetFormAdd = () => {
     setFormAdd(!formAdd);
   };

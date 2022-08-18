@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
+import { AddReservationDtoProperties } from "../../data/ApiInterface";
 import * as S from "./ReservationStyledComponent";
 
 interface reservationFormInterface {
@@ -14,14 +15,14 @@ interface reservationFormInterface {
 export default function ReservationForm({
   getDataFromForm,
 }: {
-  getDataFromForm: (data: reservationFormInterface) => void;
+  getDataFromForm: (data: AddReservationDtoProperties) => void;
 }) {
   const [name, setName] = useState("");
   const nameValidation = name.length < 300 && name.length >1;
   const [email, setEmail] = useState("");
   const emailValidation = email.includes("@") && email.length < 300 && email.length > 1;
 
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(1);
 
   const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
   const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
@@ -64,9 +65,10 @@ export default function ReservationForm({
     const reservationForm = {
       name: name,
       email: email,
-      number: number,
+      personCount: number,
       checkIn: checkIn,
       checkOut: checkOut,
+      confirmed: true,
     };
 
     getDataFromForm(reservationForm);
@@ -113,7 +115,7 @@ export default function ReservationForm({
           variant="outlined"
           InputProps={{
             inputProps: {
-              min: 0,
+              min: 1,
             },
           }}
           value={number}

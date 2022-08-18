@@ -25,7 +25,9 @@ function App() {
             
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
-          <Route path="/accommodation" element={<AccommodationPage />} />
+          <Route path="/accommodation" element={<AccommodationPage />} >
+            <Route path="/accommodation:AccommodationID" element={<AccommodationPage />} />
+          </Route >
         </Routes>
         <DisplayFooter />
       </Router>

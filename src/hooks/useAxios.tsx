@@ -1,42 +1,36 @@
 import axios from 'axios';
-import { api } from "../utils/api";
-type User = {
-  id: number;
-  email: string;
-  first_name: string;
+import { useEffect, useRef, useState } from "react";
+
+const useAxios = (webpage: string, method: any) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const controllerRef = useRef(new AbortController());
+  const cancel = () => {
+    controllerRef.current.abort();
+  };
+  var url =  "https://devcademy.herokuapp.com/api/"+webpage
+
+  useEffect(() => {
+    
+    (async () => {
+      try {
+        const response = await axios.request({
+          signal: controllerRef.current.signal,
+          method,
+          url,
+        });
+
+        setData(response.data);
+      } catch (error:any) {
+        setError(error.message);
+      } finally {
+        setLoaded(true);
+      }
+    })();
+  }, []);
+
+  return { cancel, data, error, loaded };
 };
 
-type GetUsersResponse = {
-  data: User[];
-};
-
-export default async function getUsers() {
-  try {
-    // 👇️ const data: GetUsersResponse
-    const { data, status } = await axios.get<GetUsersResponse>(
-        api,
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      },
-    );
-
-    console.log(JSON.stringify(data, null, 4));
-
-    // 👇️ "response status is: 200"
-    console.log('response status is: ', status);
-
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('error message: ', error.message);
-      return error.message;
-    } else {
-      console.log('unexpected error: ', error);
-      return 'An unexpected error occurred';
-    }
-  }
-}
-
-
+export default useAxios;

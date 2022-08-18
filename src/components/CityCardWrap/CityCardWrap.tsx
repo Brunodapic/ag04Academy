@@ -4,64 +4,79 @@ import "./style.css";
 import CityCardData from "../../data/CityCardData.json";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { api } from "../../utils/api";
-import useBackend from "../../hooks/useBackend";
-import getUsers from "../../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 
-export default function CityCardWrap() {
-
-   getUsers()
-
-  const seeData = (data: any) => {
-    console.log(data);
-  };
-
+export default function CityCardWrap({
+  header,
+  location,
+}: {
+  header: boolean;
+  location?: string;
+}) {
   const {
-    isLoading,
+    cancel,
+    data: citys,
     error,
-    sendRequest: getData,
-  } = useBackend(
-    {
-      url: api,
-      method: "GET",
-      headers: undefined,
-      body: undefined,
-    },
-    seeData
-  );
-
-  console.log(isLoading);
-  console.log(error);
-  console.log(getData);
-
-  useEffect(() => {
-    getData();
-  }, []);
+    loaded: CitysLoaded,
+  } = useAxios("Location", "GET");
 
   const COUNT = 6;
+
+  //filtriranje mi nije drago izvedeno ali content.filter mi nešto nije radio a knap sam s vremenom
   const getCards = (count: number) => {
     let content = [];
-    for (let i = 0; i < count; i++) {
-      content.push(
-        <CityCard
-          key={i}
-          name={CityCardData.name}
-          count={Number(CityCardData.count)}
-        />
-      );
+    if (CitysLoaded) {
+      // @ts-ignore
+      citys.map((city) => {
+        if (location == "") {
+          content.push(
+            <CityCard
+              key={city.id}
+              name={city.name}
+              count={Number(city.properties)}
+              image={city.imageUrl}
+            />
+          );
+        } else {
+          if (city.name == location)
+            content.push(
+              <CityCard
+                key={city.id}
+                name={city.name}
+                count={Number(city.properties)}
+                image={city.imageUrl}
+              />
+            );
+        }
+      });
+    } else {
+      for (let i = 0; i < count; i++) {
+        content.push(
+          <CityCard
+            key={i}
+            name={CityCardData.name}
+            count={Number(CityCardData.count)}
+          />
+        );
+      }
+    }
+
+    if(content.length==0){
+      return "No location with that name, search another name"
     }
     return content;
   };
 
   return (
     <div className="city-card-wrap">
-      <div className="city-card-wrap-header">
-        <h2>Popular locations</h2>
-        <Link to="locations" style={{ textDecoration: "none" }}>
-          <Button className="ViewAll"> View All Locations &rarr;</Button>
-        </Link>
-      </div>
-
+      {header && (
+        <div className="city-card-wrap-header">
+          <h2>Popular locations</h2>
+          <Link to="locations" style={{ textDecoration: "none" }}>
+            <Button className="ViewAll"> View All Locations &rarr;</Button>
+          </Link>
+        </div>
+      )}
       <div className="city-card-gallery">{getCards(COUNT)}</div>
     </div>
   );

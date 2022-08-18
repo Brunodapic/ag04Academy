@@ -1,3 +1,3 @@
 
-export const api =  'https://devcademy.herokuapp.com/api/Location'
+export const api =  "https://devcademy.herokuapp.com/api/Accomodations/location" 
 

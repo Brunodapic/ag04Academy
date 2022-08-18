@@ -11,6 +11,8 @@ interface PlaceCardElementProps {
   PlaceCardData: FullAccommodationDetailsProps;
   image: string;
   editForm: (data: any) => void;
+  setPopUpToggle: (data:any) => void;
+  popUpToggle:boolean;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
@@ -44,7 +46,11 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           >
             EDIT
           </Button>
-          <Button color="error" size="small" >
+          <Button
+            color="error"
+            size="small"
+            onClick={() => props.setPopUpToggle(!props.popUpToggle)}
+          >
             DELETE PLACE
           </Button>
         </CardActions>

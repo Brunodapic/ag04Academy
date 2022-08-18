@@ -10,8 +10,8 @@ export default function Home() {
     <div>
       <MainWrapp>
         <DisplayHeader />
-        <CityCardWrap />
-        <AccommodationCardWrap />
+        <CityCardWrap location={""} header={true} />
+        <AccommodationCardWrap lenOfAcc={5}  />
       </MainWrapp>
     </div>
   );
