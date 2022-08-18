@@ -12,14 +12,8 @@ const ReservationConfirmModal: React.FC<{
   AccommodationData?: any;
   FormData?: any;
 }> = (props) => {
-    console.log(props.AccommodationData)
-    console.log(props.FormData)
-
-
 
   var diff = Math.floor((Date.parse(props.FormData.checkOut) - Date.parse(props.FormData.checkIn)) / 86400000);
-
-  console.log(diff)
 
   const confirm = () => {
     props.togglePopUp();

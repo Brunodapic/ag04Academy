@@ -95,7 +95,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
-  sendFrom: (data: any) => void;
+  sendFrom: (data: any,edit:boolean,id:string) => void;
 }> = (props) => {
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
@@ -103,14 +103,14 @@ const NewPlacForm: React.FC<{
     description: props.FormData ? props.FormData.description : "",
     categorization: props.FormData ? props.FormData.categorization : 1,
     type: props.FormData ? props.FormData.type : "",
-    personCount: props.FormData ? props.FormData.personCount : 1,
+    personCount: props.FormData?.personCount ? props.FormData.personCount : 1,
     price: props.FormData ? props.FormData.price : "",
     location: props.FormData ? props.FormData.location : "",
     postalCode: props.FormData ? props.FormData.postalCode : "",
     imageUrl: props.FormData ? props.FormData.imageUrl : "",
     freeCancelation: props.FormData ? props.FormData.freeCancelation : true,
   };
-
+console.log(props.FormData)
   const [type, setType] = useState<typeOfAccommodation>();
   const [nameValidation, setNameValidation] = useState(false);
   const [shortDescriptionValidation, setshortDescriptionValidation] =
@@ -221,8 +221,7 @@ const NewPlacForm: React.FC<{
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-
-    props.sendFrom(newPlaceState);
+    props.sendFrom(newPlaceState,props.FormData == null ? false : true,props.FormData == null ?"":props.FormData.id);
     props.toggleSetFormAdd();
   };
 

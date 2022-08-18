@@ -13,8 +13,7 @@ export default function AccommodationCardWrap({lenOfAcc}:{lenOfAcc:number}) {
     loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
-
-  console.log(accomodations)
+  
   const COUNT = 4;
   const getCards = (count: number) => {
     let content = [];

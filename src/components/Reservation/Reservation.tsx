@@ -39,7 +39,6 @@ export default function Reservation({
       id:FullAccommodationDetails.id,
       accomodationId:FullAccommodationDetails.id,
     }
-    console.log("SEND:", sendData)
     //nisam jos shvatio koji je tocno url za rezervaciju
 
     setFormData(undefined)
@@ -48,7 +47,6 @@ export default function Reservation({
   const getDataFromForm = (data: AddReservationDtoProperties) => {
     togglePopUp()
     setFormData(data)
-    console.log(data);
   };
 
 

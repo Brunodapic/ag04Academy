@@ -21,9 +21,9 @@ export default function MyPlaces() {
     setFormAdd(!formAdd);
   };
 
-  const sendFrom = (data: any) => {
-    console.log(data);
+  const sendFrom = (data: any, edit:boolean,id:string) => {
 
+    console.log(id)
     var sendData = {
       title: data.title,
       subtitle: "string",
@@ -40,13 +40,25 @@ export default function MyPlaces() {
         name: data.location,
         imageUrl: "None",
         postalCode: data.postalCode,
-        properties: 0,
+        properties: data.properties,
       },
-      capacity: 0,
+      capacity: data.capacity,
     };
-    console.log(sendData);
 
-    axios
+    if(edit){
+      axios
+      .put("https://devcademy.herokuapp.com/api/Accomodations/"+id, {
+        sendData,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    }else{
+      axios
       .post("https://devcademy.herokuapp.com/api/Accomodations", {
         sendData,
       })
@@ -57,6 +69,9 @@ export default function MyPlaces() {
         console.log(error);
       });
 
+    }
+
+    
     setSendData(sendData);
   };
 
@@ -68,9 +83,6 @@ export default function MyPlaces() {
     loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
-
-  console.log(accomodations)
-  console.log(AccommodationCardsListData)
 
   return (
     <MainWrapp>

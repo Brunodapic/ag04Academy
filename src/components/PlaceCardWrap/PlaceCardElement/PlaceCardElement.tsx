@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./style.css";
-import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 
 interface PlaceCardElementProps {
   PlaceCardData: any;
@@ -22,7 +21,6 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
     props.setPopUpToggle(!props.popUpToggle);
   };
 
-  console.log(props.PlaceCardData)
   return (
     <Card className="PlaceCardContainer" sx={{ maxWidth: 297, maxHeight: 413 }}>
       <CardMedia
