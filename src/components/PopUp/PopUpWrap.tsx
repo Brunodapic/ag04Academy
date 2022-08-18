@@ -10,12 +10,17 @@ const PopUpWrap: React.FC<{
 }> = (props) => {
   return (
     <S.PopUpWrap>
+      {props.FormData?
+      
       <ReservationConfirmModal
         togglePopUp={props.togglePopUp}
         toggleConfirm={props.toggleConfirm}
         AccommodationData={props.AccommodationData}
         FormData={props.FormData}
       />
+      :
+      <DeleteListing togglePopUp={props.togglePopUp} toggleConfirm={props.toggleConfirm} />
+    }
     </S.PopUpWrap>
   );
 };

@@ -11,8 +11,10 @@ export default function AccommodationCardWrap({lenOfAcc}:{lenOfAcc:number}) {
     data: accomodations,
     error,
     loaded: accomodationsLoaded,
-  } = useAxios("Accomodations", "GET");
+  } = useAxios("Accomodations/recommendation", "GET");
 
+
+  console.log(accomodations)
   const COUNT = 4;
   const getCards = (count: number) => {
     let content = [];
@@ -28,7 +30,7 @@ export default function AccommodationCardWrap({lenOfAcc}:{lenOfAcc:number}) {
         content.push(<AccommodationCard key={i} FullAccommodationDetailsProps={undefined} />);
       }
     }
-    return content.slice(0, lenOfAcc).slice(0,-1);
+    return content//.slice(0, lenOfAcc).slice(0,-1);
   };
 
   return (

@@ -8,13 +8,13 @@ import Typography from '@mui/material/Typography';
 
 const DeleteListing: React.FC<{
     togglePopUp:()=>void;
-    toggleConfirmDelete:()=>void;
+    toggleConfirm:()=>void;
   }> = (props) => {
 
 
     const confirmDelete = ()=>{
         props.togglePopUp()
-        props.toggleConfirmDelete()
+        props.toggleConfirm()
     }
 
     return (

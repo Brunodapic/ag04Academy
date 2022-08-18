@@ -8,14 +8,21 @@ import "./style.css";
 import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 
 interface PlaceCardElementProps {
-  PlaceCardData: FullAccommodationDetailsProps;
+  PlaceCardData: any;
   image: string;
   editForm: (data: any) => void;
-  setPopUpToggle: (data:any) => void;
-  popUpToggle:boolean;
+  setPopUpToggle: (data: any) => void;
+  popUpToggle: boolean;
+  setIdDelete: (data: string) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
+  const deletePlace = () => {
+    props.setIdDelete(props.PlaceCardData.id);
+    props.setPopUpToggle(!props.popUpToggle);
+  };
+
+  console.log(props.PlaceCardData)
   return (
     <Card className="PlaceCardContainer" sx={{ maxWidth: 297, maxHeight: 413 }}>
       <CardMedia
@@ -28,13 +35,10 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.PlaceCardData.title}
+          {props.PlaceCardData && props.PlaceCardData.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.PlaceCardData.location}
-        </Typography>
-        <Typography variant="body2" color="text.primary">
-          {props.PlaceCardData.subtitle}
+          {props.PlaceCardData && props.PlaceCardData.location.name}
         </Typography>
         <CardActions className="plac-card-buttons">
           <Button
@@ -46,11 +50,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           >
             EDIT
           </Button>
-          <Button
-            color="error"
-            size="small"
-            onClick={() => props.setPopUpToggle(!props.popUpToggle)}
-          >
+          <Button color="error" size="small" onClick={() => deletePlace()}>
             DELETE PLACE
           </Button>
         </CardActions>

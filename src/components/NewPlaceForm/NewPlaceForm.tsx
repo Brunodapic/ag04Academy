@@ -37,7 +37,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
       };
     }
     case "SHORT_CHANGE": {
-      return { ...state, subtitle: action.value };
+      return { ...state, shortDescription: action.value };
     }
     case "LONG_CHANGE": {
       return {
@@ -78,7 +78,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
     default:
       return {
         title: "",
-        subtitle: "",
+        shortDescription: "",
         description: "",
         categorization: 1,
         type: null,
@@ -95,10 +95,11 @@ const newPlaceStateReducer = (state: any, action: any) => {
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
+  sendFrom: (data: any) => void;
 }> = (props) => {
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
-    subtitle: props.FormData ? props.FormData.subtitle : "",
+    shortDescription: props.FormData ? props.FormData.shortDescription : "",
     description: props.FormData ? props.FormData.description : "",
     categorization: props.FormData ? props.FormData.categorization : 1,
     type: props.FormData ? props.FormData.type : "",
@@ -112,7 +113,8 @@ const NewPlacForm: React.FC<{
 
   const [type, setType] = useState<typeOfAccommodation>();
   const [nameValidation, setNameValidation] = useState(false);
-  const [subtitleValidation, setSubtitleValidation] = useState(false);
+  const [shortDescriptionValidation, setshortDescriptionValidation] =
+    useState(false);
   const [locationValidation, setLocationValidation] = useState(false);
 
   const [newPlaceState, dispatchNewPlaceState] = useReducer(
@@ -167,13 +169,13 @@ const NewPlacForm: React.FC<{
       }
       case "short": {
         if (value.length < 100) {
-          nameValidation && setSubtitleValidation(false);
+          nameValidation && setshortDescriptionValidation(false);
           dispatchNewPlaceState({
             type: "SHORT_CHANGE",
             value: value,
           });
         } else {
-          setSubtitleValidation(true);
+          setshortDescriptionValidation(true);
         }
         break;
       }
@@ -187,11 +189,12 @@ const NewPlacForm: React.FC<{
       case "location": {
         if (value.length < 100) {
           locationValidation && setLocationValidation(false);
-        dispatchNewPlaceState({
-          type: "LOCATION_CHANGE",
-          value: value,
-        });}else{
-          setLocationValidation(true)
+          dispatchNewPlaceState({
+            type: "LOCATION_CHANGE",
+            value: value,
+          });
+        } else {
+          setLocationValidation(true);
         }
         break;
       }
@@ -218,8 +221,9 @@ const NewPlacForm: React.FC<{
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    console.log(newPlaceState);
-    nameValidation && locationValidation && subtitleValidation && props.toggleSetFormAdd();
+
+    props.sendFrom(newPlaceState);
+    props.toggleSetFormAdd();
   };
 
   return (
@@ -243,9 +247,9 @@ const NewPlacForm: React.FC<{
           label="Short description"
           name="short"
           variant="outlined"
-          error={subtitleValidation}
-          helperText={subtitleValidation && "max 200 characters"}
-          value={newPlaceState.subtitle}
+          error={shortDescriptionValidation}
+          helperText={shortDescriptionValidation && "max 200 characters"}
+          value={newPlaceState.shortDescription}
           onChange={textChange}
         />
         <TextField
@@ -292,7 +296,6 @@ const NewPlacForm: React.FC<{
           onChange={numberChange}
         />
         <TextField
-        
           required
           type="text"
           label="Location"
@@ -338,6 +341,13 @@ const NewPlacForm: React.FC<{
             width: "98%",
           }}
         />
+        <Button
+          sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
+          className="button-add-new-place"
+          onClick={props.toggleSetFormAdd}
+        >
+          CANCLE
+        </Button>
         <Button
           type="submit"
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}

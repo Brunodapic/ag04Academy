@@ -6,13 +6,15 @@ import { Button } from "@mui/material";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
 import { useEffect, useState } from "react";
 import PopUpWrap from "../PopUp/PopUpWrap";
+import axios from "axios";
 
 export default function PlaceCardWrap(props: {
   toggleSetFormAdd: () => void;
   setFormData: (data: FullAccommodationDetailsProps) => void;
-  allAccommodations: FullAccommodationDetailsProps[] | any[];
+  allAccommodations: null | any[];
 }) {
   const [popUpToggle, setPopUpToggle] = useState(false);
+  const [idDelete, setIdDelete] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const editForm = (data: FullAccommodationDetailsProps) => {
@@ -26,22 +28,36 @@ export default function PlaceCardWrap(props: {
 
   const toggleConfirmDelete = () => {
     setConfirmDelete(!confirmDelete);
+    axios
+      .delete("https://devcademy.herokuapp.com/api/Accomodations/"+idDelete)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  const COUNT = props.allAccommodations.length;
-  const getCards = (count: number) => {
-    let content = [];
-    for (let i = 0; i < count; i++) {
-      content.push(
-        <PlaceCardElement
-          key={i}
-          PlaceCardData={props.allAccommodations[i % COUNT]}
-          image={i % 2 === 0 ? TreeHouse : ModernHouse}
-          editForm={editForm}
-          setPopUpToggle={setPopUpToggle}
-          popUpToggle={popUpToggle}
-        />
-      );
+  const getCards = () => {
+    let content: JSX.Element[]=[];
+
+    if (props.allAccommodations) {
+      props.allAccommodations.map((place) =>{
+        content.push(
+          <PlaceCardElement
+            key={place.id}
+            PlaceCardData={place}
+            image={place.imageUrl}
+            editForm={editForm}
+            setPopUpToggle={setPopUpToggle}
+            popUpToggle={popUpToggle}
+            setIdDelete={setIdDelete}
+          />
+        );
+        })
+      
+    } else {
+      return "Loading..."
     }
     return content;
   };
@@ -66,8 +82,9 @@ export default function PlaceCardWrap(props: {
           </Button>
         </div>
 
-        <div className="plac-card-wrap-gallery">{getCards(COUNT)}</div>
+        <div className="plac-card-wrap-gallery">{getCards()}</div>
       </div>
     </>
   );
 }
+

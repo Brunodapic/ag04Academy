@@ -3,6 +3,7 @@ import { LocationInterface } from "../data/ApiInterface";
 export default interface FullAccommodationDetailsProps {
   id:string;
   title: string;
+  shortDescription: string;
   subtitle: string;
   description: string;
   type: string ;
