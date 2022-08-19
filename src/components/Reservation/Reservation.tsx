@@ -4,7 +4,7 @@ import PopUpWrap from "../PopUp/PopUpWrap";
 import ReservationCard from "./ReservationCard";
 import ReservationForm from "./ReservationForm";
 import * as S from "./ReservationStyledComponent";
-
+import axios from "axios";
 export interface reservationFormInterface {
   name: string;
   email: string;
@@ -25,32 +25,42 @@ export default function Reservation({
 
   const togglePopUp = () => {
     setConfirmationToggle(!confirmationToggle);
-    
   };
 
   const toggleConfirmationTask = () => {
     SetBookStay(false);
-    var sendData={
+    var sendData = {
       email: formData?.email,
-      personCount: formData?.personCount,
+      personCount: Number(formData?.personCount),
       checkIn: formData?.checkIn,
       checkOut: formData?.checkOut,
       confirmed: true,
-      id:FullAccommodationDetails.id,
-      accomodationId:FullAccommodationDetails.id,
-    }
+      //id:FullAccommodationDetails.id,
+      accomodationId: FullAccommodationDetails.id,
+    };
     //nisam jos shvatio koji je tocno url za rezervaciju
-
-    setFormData(undefined)
+    console.log(sendData);
+    axios
+      .post("https://devcademy.herokuapp.com/api/Reservation", {
+        headers: {
+          "Content-Type": "application/json",
+          "accept": "*/*"
+        },
+        sendData,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    setFormData(undefined);
   };
 
   const getDataFromForm = (data: AddReservationDtoProperties) => {
-    togglePopUp()
-    setFormData(data)
+    togglePopUp();
+    setFormData(data);
   };
-
-
-
 
   return (
     <S.ReservationComponent>

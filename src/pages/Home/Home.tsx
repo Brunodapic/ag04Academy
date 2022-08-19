@@ -11,7 +11,7 @@ export default function Home() {
       <MainWrapp>
         <DisplayHeader />
         <CityCardWrap location={""} header={true} />
-        <AccommodationCardWrap lenOfAcc={5}  />
+        <AccommodationCardWrap />
       </MainWrapp>
     </div>
   );

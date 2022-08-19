@@ -66,9 +66,7 @@ export default function AccommodationCard({
             : AccommodationCardData.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {FullAccommodationDetailsProps
-            ? FullAccommodationDetailsProps.location.name
-            : AccommodationCardData.location}
+          None
         </Typography>
         <Typography variant="body2" color="text.primary">
           EUR{" "}
@@ -89,3 +87,12 @@ export default function AccommodationCard({
     </Card>
   );
 }
+/*
+<Typography variant="body2" color="text.secondary">
+          {FullAccommodationDetailsProps
+            ? FullAccommodationDetailsProps.location.name
+            : "None"}
+        </Typography>
+
+
+*/

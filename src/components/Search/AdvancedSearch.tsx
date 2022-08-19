@@ -17,9 +17,13 @@ const AdvancedSearch: React.FC<{
 }> = (props) => {
 
 
+  const setType= (data:string)=>{
+    setTypeOfAccommodation(data as unknown as typeOfAccommodation)
+  }
+
   const [typeOfAccommodation, setTypeOfAccommodation] =
     useState<typeOfAccommodation>(
-      props.data ? props.data.state.data.typeOfAccommodation  : undefined
+      props.data ? props.data.state.data.typeOfAccommodation  : ''
     );
   const [number, setNumber] = useState(
     props.data ? props.data.state.data.number : 0
