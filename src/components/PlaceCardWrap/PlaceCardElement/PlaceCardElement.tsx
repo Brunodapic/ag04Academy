@@ -35,9 +35,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
         <Typography gutterBottom variant="h5" component="div">
           {props.PlaceCardData && props.PlaceCardData.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.PlaceCardData && props.PlaceCardData.location.name}
-        </Typography>
+        
         <CardActions className="plac-card-buttons">
           <Button
             color="success"
@@ -56,3 +54,10 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
     </Card>
   );
 }
+
+/*
+<Typography variant="body2" color="text.secondary">
+          {props.PlaceCardData && props.PlaceCardData.location.name}
+        </Typography>
+
+*/

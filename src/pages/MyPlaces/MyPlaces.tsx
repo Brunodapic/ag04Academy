@@ -16,65 +16,95 @@ export default function MyPlaces() {
     FullAccommodationDetailsProps[]
   >(AccommodationCardsListData);
 
+  const {
+    cancel: CityCancel,
+    data: citys,
+    error: CityError,
+    loaded: CitysLoaded,
+  } = useAxios("Location", "GET");
+
+  const GetIDlocation = (location: string, array: any[] | null) => {
+    if (array != null) {
+      let cityID = array.find((city) => city.name === location);
+      return cityID;
+    } else {
+      console.log("array null");
+      return "none";
+    }
+  };
 
   const toggleSetFormAdd = () => {
     setFormAdd(!formAdd);
   };
 
-  const sendFrom = (data: any, edit:boolean,id:string) => {
-
-    console.log(id)
-    var sendData = {
-      title: data.title,
-      subtitle: "string",
-      description: data.description,
-      shortDescription: data.shortDescription,
-      type: data.type,
-      categorization: data.categorization,
-      personCount: data.personCount,
-      imageUrl: data.imageUrl,
-      freeCancelation: data.freeCancelation,
-      price: data.price,
-      locationID: "",//"3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      location: {
-        name: data.location,
-        imageUrl: "None",
-        postalCode: data.postalCode,
-        properties: data.properties,
-      },
-      capacity: data.capacity,
-    };
-
-    if(edit){
+  const sendFrom = (data: any, edit: boolean, id: string) => {
+    console.log(data,formData)
+    var Location_ID = GetIDlocation(data.location, citys);
+    if (Location_ID) {
+      var sendData:any = {
+        title: data.title,
+        subtitle: data.shortDescription,
+        description: data.description,
+        shortDescription: data.shortDescription,
+        type: data.type,
+        categorization: data.categorization,
+        personCount: data.personCount,
+        imageUrl: data.imageUrl,
+        freeCancelation: data.freeCancelation,
+        price: data.price,
+        locationID: Location_ID.id,
+        location: {
+          name: Location_ID.name,
+          imageUrl: Location_ID.imageUrl,
+          postalCode: Location_ID.postalCode,
+          properties: Location_ID.properties,
+        },
+        capacity: data.personCount,
+      };
+    } else {
+      sendData = {
+        title: data.title,
+        subtitle: "string",
+        description: data.description,
+        shortDescription: data.shortDescription,
+        type: data.type,
+        categorization: data.categorization,
+        personCount: data.personCount,
+        imageUrl: data.imageUrl,
+        freeCancelation: data.freeCancelation,
+        price: data.price,
+        locationID: formData?.locationID, //"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        location: formData?.locationID,
+        capacity: data.capacity,
+      };
+    }
+    console.log(sendData);
+    if (edit) {
       axios
-      .put("https://devcademy.herokuapp.com/api/Accomodations/"+id, {
-        sendData,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    }else{
+        .put("https://devcademy.herokuapp.com/api/Accomodations/" + id, {
+          sendData,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
       axios
-      .post("https://devcademy.herokuapp.com/api/Accomodations", {
-        sendData,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+        .post("https://devcademy.herokuapp.com/api/Accomodations", {
+          sendData,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
 
-    
     setSendData(sendData);
   };
-
 
   const {
     cancel,
@@ -83,7 +113,6 @@ export default function MyPlaces() {
     loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
-
   return (
     <MainWrapp>
       {formAdd ? (
@@ -91,6 +120,7 @@ export default function MyPlaces() {
           FormData={formData}
           toggleSetFormAdd={toggleSetFormAdd}
           sendFrom={sendFrom}
+          setFormData={setFormData}
         />
       ) : (
         <PlaceCardWrap
@@ -102,3 +132,14 @@ export default function MyPlaces() {
     </MainWrapp>
   );
 }
+
+/*
+
+location: {
+        name: data.location,
+        imageUrl: data.imageUrl,
+        postalCode: Location_ID.postalCode,
+        properties: Location_ID.properties,
+      },
+
+*/

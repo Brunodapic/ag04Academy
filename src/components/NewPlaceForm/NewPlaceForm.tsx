@@ -95,7 +95,8 @@ const newPlaceStateReducer = (state: any, action: any) => {
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
-  sendFrom: (data: any,edit:boolean,id:string) => void;
+  sendFrom: (data: any, edit: boolean, id: string) => void;
+  setFormData: (data: FullAccommodationDetailsProps) => void;
 }> = (props) => {
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
@@ -110,7 +111,7 @@ const NewPlacForm: React.FC<{
     imageUrl: props.FormData ? props.FormData.imageUrl : "",
     freeCancelation: props.FormData ? props.FormData.freeCancelation : true,
   };
-console.log(props.FormData)
+  console.log(props.FormData);
   const [type, setType] = useState<typeOfAccommodation>();
   const [nameValidation, setNameValidation] = useState(false);
   const [shortDescriptionValidation, setshortDescriptionValidation] =
@@ -221,7 +222,32 @@ console.log(props.FormData)
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    props.sendFrom(newPlaceState,props.FormData == null ? false : true,props.FormData == null ?"":props.FormData.id);
+    props.sendFrom(
+      newPlaceState,
+      props.FormData == null || props.FormData.id == "" ? false : true,
+      props.FormData == null || props.FormData.id == "" ? "" : props.FormData.id
+    );
+    props.toggleSetFormAdd();
+  };
+
+  const cancel = () => {
+    props.setFormData({
+      title: "",
+      shortDescription: "",
+      description: "",
+      categorization: 1,
+      type: "",
+      personCount: 1,
+      price: 0,
+      location: "",
+      postalCode: "",
+      imageUrl: "",
+      freeCancelation: true,
+      id: "",
+      subtitle: "",
+      locationID: "",
+      capacity: 0,
+    });
     props.toggleSetFormAdd();
   };
 
@@ -270,7 +296,7 @@ console.log(props.FormData)
             onChange={numberChange}
           />
         </S.RatingForm>
-        <TypeOfAccommodationComponent required setType={setType} />
+        <TypeOfAccommodationComponent typeOfAccommodation={newPlaceState.type} required setType={setType} />
         <TextField
           required
           type="number"
@@ -343,7 +369,7 @@ console.log(props.FormData)
         <Button
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
           className="button-add-new-place"
-          onClick={props.toggleSetFormAdd}
+          onClick={cancel}
         >
           CANCLE
         </Button>
@@ -352,7 +378,9 @@ console.log(props.FormData)
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
           className="button-add-new-place"
         >
-          {props.FormData == null ? "ADD NEW PLACE" : "FINISH EDIT"}
+          {props.FormData == null || props.FormData.id == ""
+            ? "ADD NEW PLACE"
+            : "FINISH EDIT"}
         </Button>
       </S.NewPlaceForm>
     </S.NewPlaceFormWrap>
@@ -360,3 +388,8 @@ console.log(props.FormData)
 };
 
 export default NewPlacForm;
+
+/*
+ 
+
+*/
