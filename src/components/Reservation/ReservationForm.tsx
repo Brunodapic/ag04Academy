@@ -3,24 +3,16 @@ import { useState } from "react";
 import { AddReservationDtoProperties } from "../../data/ApiInterface";
 import * as S from "./ReservationStyledComponent";
 
-interface reservationFormInterface {
-  name: string;
-  email: string;
-  number: number;
-  //orginalno je za checkin i checkout bio Date , ali imao sam error-e vezi neke konverzije datuma
-  checkIn: string;
-  checkOut: string;
-}
-
 export default function ReservationForm({
   getDataFromForm,
 }: {
   getDataFromForm: (data: AddReservationDtoProperties) => void;
 }) {
   const [name, setName] = useState("");
-  const nameValidation = name.length < 300 && name.length >1;
+  const nameValidation = name.length < 300 && name.length > 1;
   const [email, setEmail] = useState("");
-  const emailValidation = email.includes("@") && email.length < 300 && email.length > 1;
+  const emailValidation =
+    email.includes("@") && email.length < 300 && email.length > 1;
 
   const [number, setNumber] = useState(1);
 
@@ -90,9 +82,7 @@ export default function ReservationForm({
           value={name}
           error={!nameValidation}
           helperText={
-            nameValidation
-              ? ""
-              : "Full name should have max 300 characters."
+            nameValidation ? "" : "Full name should have max 300 characters."
           }
           onChange={nameChange}
         />

@@ -6,7 +6,6 @@ import acc from "../../../images/acc1.jpeg";
 import AccommodationCardData from "../../../data/AccommodationCardData.json";
 import "./style.css";
 import Rating from "@mui/material/Rating";
-import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 import { LocationInterface } from "../../../data/ApiInterface";
 import { useNavigate } from "react-router-dom";
 

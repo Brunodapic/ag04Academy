@@ -10,9 +10,7 @@ export default function AccommodationPage() {
   const { AccommodationID } = useParams();
 
   const {
-    cancel,
     data: accommodation,
-    error,
     loaded: accommodationLoaded,
   } = useAxios(`Accomodations/${AccommodationID}`, "GET");
 

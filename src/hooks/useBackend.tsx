@@ -1,4 +1,3 @@
-import React, { useCallback } from "react";
 import { useState } from "react";
 
 const useBackend = (
@@ -11,23 +10,23 @@ const useBackend = (
   const sendRequest = async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch(requestConfig.url, {
-        method: requestConfig.method ? requestConfig.method : 'GET',
+        method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},
-        mode: 'no-cors',
+        mode: "no-cors",
         body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
       });
       if (!response.ok) {
-        throw new Error('Request failed!');
+        throw new Error("Request failed!");
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       applyData(data);
-    } catch (err:any) {
-      setError(err.message || 'Something went wrong!');
+    } catch (err: any) {
+      setError(err.message || "Something went wrong!");
     }
     setIsLoading(false);
   };

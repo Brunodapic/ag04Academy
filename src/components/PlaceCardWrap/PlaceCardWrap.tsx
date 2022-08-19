@@ -1,10 +1,8 @@
 import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
-import TreeHouse from "../../images/TreeHouse.jpeg";
-import ModernHouse from "../../images/ModernHouse.png";
 import { Button } from "@mui/material";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import PopUpWrap from "../PopUp/PopUpWrap";
 import axios from "axios";
 

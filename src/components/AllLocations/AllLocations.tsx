@@ -4,25 +4,16 @@ import CityCardWrap from "../CityCardWrap/CityCardWrap";
 import MainWrapp from "../MainWrapp/MainWrapp";
 
 export default function AllLocations() {
-  
   const [location, setLocation] = useState("");
-  const [haveLocation, seHavetLocation] = useState(false);
-
 
   const SimpleSearchResult = (data: string) => {
-    setLocation(data)
-    if(data.trim() ==""){
-      seHavetLocation(false)
-
-    }
-    seHavetLocation(true)
-    console.log(data);
+    setLocation(data);
   };
-  
+
   return (
     <MainWrapp>
       <h2>All Locations</h2>
-      <SimpleSearch  SimpleSearchResult={SimpleSearchResult} />
+      <SimpleSearch SimpleSearchResult={SimpleSearchResult} />
       <CityCardWrap header={false} location={location} />
     </MainWrapp>
   );

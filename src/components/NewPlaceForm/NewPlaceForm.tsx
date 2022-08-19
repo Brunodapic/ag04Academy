@@ -388,8 +388,3 @@ const NewPlacForm: React.FC<{
 };
 
 export default NewPlacForm;
-
-/*
- 
-
-*/

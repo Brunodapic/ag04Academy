@@ -2,7 +2,6 @@ import { useState } from "react";
 import MainWrapp from "../../components/MainWrapp/MainWrapp";
 import NewPlacForm from "../../components/NewPlaceForm/NewPlaceForm";
 import PlaceCardWrap from "../../components/PlaceCardWrap/PlaceCardWrap";
-import { AccommodationCardsListData } from "../../data/AccommodationCardsListData";
 import useAxios from "../../hooks/useAxios";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
 import axios from "axios";
@@ -10,17 +9,10 @@ import axios from "axios";
 export default function MyPlaces() {
   const [formAdd, setFormAdd] = useState(false);
   const [formData, setFormData] = useState<FullAccommodationDetailsProps>();
-  const [send, setSend] = useState(false);
-  const [sendData, setSendData] = useState<any>();
-  const [allAccommodations, setAllAccommodations] = useState<
-    FullAccommodationDetailsProps[]
-  >(AccommodationCardsListData);
+
 
   const {
-    cancel: CityCancel,
     data: citys,
-    error: CityError,
-    loaded: CitysLoaded,
   } = useAxios("Location", "GET");
 
   const GetIDlocation = (location: string, array: any[] | null) => {
@@ -102,15 +94,10 @@ export default function MyPlaces() {
           console.log(error);
         });
     }
-
-    setSendData(sendData);
   };
 
   const {
-    cancel,
     data: accomodations,
-    error,
-    loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
   return (

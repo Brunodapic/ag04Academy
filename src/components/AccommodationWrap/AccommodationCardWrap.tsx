@@ -1,5 +1,4 @@
 import { Button } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import AccommodationCard from "./AccommodationCard/AccommodationCard";
@@ -11,16 +10,15 @@ export default function AccommodationCardWrap({
   filterData?: any;
 }) {
   const {
-    cancel,
     data: accomodations,
-    error,
+
     loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
   function useFilterData(value: any) {
     if (filterData.typeOfAccommodation && filterData.number) {
       return (
-        value.type == filterData.typeOfAccommodation &&
+        value.type === filterData.typeOfAccommodation &&
         value.capacity >= filterData.number
       );
     } else {

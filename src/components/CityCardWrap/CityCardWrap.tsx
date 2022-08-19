@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import CityCard from "./CityCard/CityCard";
 import "./style.css";
 import CityCardData from "../../data/CityCardData.json";
@@ -18,11 +17,9 @@ export default function CityCardWrap({
   location?: string;
 }) {
 
-  
+
   const {
-    cancel,
     data: citys,
-    error,
     loaded:CitysLoaded ,
   } = useAxios("Location", "GET");
 
@@ -43,7 +40,7 @@ export default function CityCardWrap({
     if (CitysLoaded) {
       // @ts-ignore
       citys.map((city) => {
-        if (location == "") {
+        if (location === "") {
           content.push(
             <CityCard
               key={city.id}
@@ -53,7 +50,7 @@ export default function CityCardWrap({
             />
           );
         } else {
-          if (city.name == location)
+          if (city.name === location)
             content.push(
               <CityCard
                 key={city.id}
@@ -76,7 +73,7 @@ export default function CityCardWrap({
       }
     }
 
-    if(content.length==0){
+    if(content.length===0){
       return "No location with that name, search another name"
     }
     return content;
