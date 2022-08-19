@@ -5,6 +5,10 @@ import CityCardData from "../../data/CityCardData.json";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import { useSelector, useDispatch } from 'react-redux';
+import { locationActions } from '../../store/index';
+import { RootState } from "../../store";
+
 
 export default function CityCardWrap({
   header,
@@ -13,12 +17,23 @@ export default function CityCardWrap({
   header: boolean;
   location?: string;
 }) {
+
+  
   const {
     cancel,
     data: citys,
     error,
-    loaded: CitysLoaded,
+    loaded:CitysLoaded ,
   } = useAxios("Location", "GET");
+
+  const dispatch = useDispatch();
+  const locations = useSelector((state: RootState) => state.locations);
+
+  var cityss=citys as unknown as any[]
+  if(CitysLoaded && citys &&(cityss.length>locations.length)){
+    console.log("redux")
+    dispatch(locationActions.init(citys));
+  }
 
   const COUNT = 6;
 

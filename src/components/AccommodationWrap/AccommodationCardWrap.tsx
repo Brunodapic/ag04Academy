@@ -34,6 +34,7 @@ export default function AccommodationCardWrap({
 
     if (accomodationsLoaded) {
       if (
+        filterData &&
         filterData.typeOfAccommodation &&
         filterData.number &&
         accomodations
