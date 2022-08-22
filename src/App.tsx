@@ -6,6 +6,7 @@ import AccommodationPage from "./pages/AccommodationPage/AccommodationPage";
 import Favorites from "./pages/Favorites/Favorites";
 import Home from "./pages/Home/Home";
 import Locations from "./pages/Locations/Locations";
+import LoginPage from "./pages/LoginPage/LoginPage";
 import MyBookings from "./pages/MyBookings/MyBookings";
 import MyPlaces from "./pages/MyPlaces/MyPlaces";
 
@@ -22,7 +23,8 @@ function App() {
           </Route>
 
           <Route path="/favorites" element={<Favorites />} />
-            
+          <Route path="/login" element={<LoginPage />} />
+
           <Route path="/MyPlaces" element={<MyPlaces />} />
           <Route path="/MyBookings" element={<MyBookings />} />
           <Route path="/accommodation" element={<AccommodationPage />} >

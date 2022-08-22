@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function NavigationBar() {
   let navigate = useNavigate();
-  
 
   return (
     <div className="navigation-bar-div">
@@ -44,7 +43,14 @@ export default function NavigationBar() {
         </h4>
       </div>
       <div>
-        <h4 className="pointer">Logout</h4>
+        <h4
+          className="pointer"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Login
+        </h4>
       </div>
     </div>
   );
