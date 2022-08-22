@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import "./App.css";
 import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
@@ -11,25 +11,38 @@ import MyBookings from "./pages/MyBookings/MyBookings";
 import MyPlaces from "./pages/MyPlaces/MyPlaces";
 
 function App() {
+  const login = localStorage.getItem("login");
+
   return (
     <div className="App">
       <Router>
         <NavigationBar />
+        
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/locations" element={<Locations byLocation={true}/>} />
-          <Route path="/locations/homes" element={<Locations byLocation={false} />} >
-              <Route path=":location" element={<Locations byLocation={false} />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/locations" element={<Locations byLocation={true} />} />
+          <Route
+            path="/locations/homes"
+            element={<Locations byLocation={false} />}
+          >
+            <Route
+              path=":location"
+              element={<Locations byLocation={false} />}
+            />
           </Route>
 
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/MyPlaces" element={<MyPlaces />} />
-          <Route path="/MyBookings" element={<MyBookings />} />
-          <Route path="/accommodation" element={<AccommodationPage />} >
-            <Route path="/accommodation:AccommodationID" element={<AccommodationPage />} />
-          </Route >
+          <Route path="/my-places" element={<MyPlaces />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/accommodation" element={<AccommodationPage />}>
+            <Route
+              path="/accommodation:AccommodationID"
+              element={<AccommodationPage />}
+            />
+          </Route>
         </Routes>
         <DisplayFooter />
       </Router>

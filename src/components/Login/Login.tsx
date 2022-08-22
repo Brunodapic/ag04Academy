@@ -25,12 +25,11 @@ export default function LoginComponent() {
   const [error, setError] = useState(false);
 
   const emailValidation =
-  email.includes("@") && email.length < 300 && email.length > 1;
+    email.includes("@") && email.length < 300 && email.length > 1;
 
-  const passwordValidation =
-  password.length < 300 && password.length > 1;
+  const passwordValidation = password.length < 20 && password.length > 6;
 
-  const acceptValidation =accept;
+  const acceptValidation = accept;
 
   const passwordChange = (event: any) => {
     setPassword(event.target.value);
@@ -44,11 +43,14 @@ export default function LoginComponent() {
     console.log({
       email: email,
       password: password,
-      accept: accept
+      accept: accept,
     });
 
-    if(!(accept && passwordValidation && emailValidation)){
-        setError(true)
+    if (!(accept && passwordValidation && emailValidation)) {
+      setError(true);
+    } else {
+      localStorage.setItem("login", "true");
+      navigate("/");
     }
   };
 
@@ -86,7 +88,7 @@ export default function LoginComponent() {
               value={email}
               onChange={emailChange}
               error={error && !emailValidation}
-              helperText={error && !emailValidation?"Eneter valid email":""}
+              helperText={error && !emailValidation ? "Eneter valid email" : ""}
             />
             <TextField
               margin="normal"
@@ -100,18 +102,27 @@ export default function LoginComponent() {
               value={password}
               onChange={passwordChange}
               error={error && !passwordValidation}
-              helperText={error && !passwordValidation?"Eneter valid password":""}
-
+              helperText={
+                error && !passwordValidation
+                  ? "Eneter valid password, between 6 and 20 characters"
+                  : ""
+              }
             />
             <FormControlLabel
-              control={<Checkbox value={accept} color="primary" onChange={()=>setAccept(!accept)}/>}
+              control={
+                <Checkbox
+                  value={accept}
+                  color="primary"
+                  onChange={() => setAccept(!accept)}
+                />
+              }
               label="I accept the Terms and Conditions"
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#40E0D0", color: "white" }}
               disabled={!accept}
             >
               Log In

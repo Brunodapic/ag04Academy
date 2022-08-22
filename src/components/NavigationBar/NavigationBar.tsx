@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function NavigationBar() {
   let navigate = useNavigate();
+  const login = localStorage.getItem("login");
+  console.log(login);
+
+  const logout = () => {
+    console.log("logout");
+    localStorage.clear();
+    navigate("/login");
+  };
 
   return (
     <div className="navigation-bar-div">
@@ -10,7 +18,7 @@ export default function NavigationBar() {
         <h2
           className="pointer"
           onClick={() => {
-            navigate("/");
+             navigate("/");
           }}
         >
           Staycation
@@ -20,7 +28,7 @@ export default function NavigationBar() {
         <h4
           className="pointer"
           onClick={() => {
-            navigate("/locations");
+            (login && navigate("/locations"));
           }}
         >
           Locations
@@ -28,7 +36,7 @@ export default function NavigationBar() {
         <h4
           className="pointer"
           onClick={() => {
-            navigate("/MyPlaces");
+            (login && navigate("/my-places"));
           }}
         >
           My Places
@@ -36,21 +44,32 @@ export default function NavigationBar() {
         <h4
           className="pointer"
           onClick={() => {
-            navigate("/MyBookings");
+            (login && navigate("/my-bookings"));
           }}
         >
           My Bookings
         </h4>
       </div>
       <div>
-        <h4
-          className="pointer"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Login
-        </h4>
+        {login ? (
+          <h4
+            className="pointer"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout
+          </h4>
+        ) : (
+          <h4
+            className="pointer"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </h4>
+        )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export default function LoginPage() {
   
 
   return (
-    <MainWrapp>
+    <MainWrapp >
         <LoginComponent />
     </MainWrapp>
   );
