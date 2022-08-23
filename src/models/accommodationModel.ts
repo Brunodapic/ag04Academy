@@ -10,7 +10,7 @@ export default interface FullAccommodationDetailsProps {
   imageUrl: string;
   freeCancelation: boolean;
   price: number;
-  location: string;
+  location: any;
   postalCode: string;
   locationID: string;
   capacity: number;

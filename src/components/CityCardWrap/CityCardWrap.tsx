@@ -28,7 +28,6 @@ export default function CityCardWrap({
 
   var cityss=citys as unknown as any[]
   if(CitysLoaded && citys &&(cityss.length>locations.length)){
-    console.log("redux")
     dispatch(locationActions.init(citys));
   }
 

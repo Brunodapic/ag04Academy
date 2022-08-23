@@ -10,7 +10,6 @@ export default function MyPlaces() {
   const [formAdd, setFormAdd] = useState(false);
   const [formData, setFormData] = useState<FullAccommodationDetailsProps>();
 
-
   const {
     data: citys,
   } = useAxios("Location", "GET");
@@ -30,7 +29,6 @@ export default function MyPlaces() {
   };
 
   const sendFrom = (data: any, edit: boolean, id: string) => {
-    console.log(data,formData)
     var Location_ID = GetIDlocation(data.location, citys);
     if (Location_ID) {
       var sendData:any = {
@@ -66,16 +64,16 @@ export default function MyPlaces() {
         freeCancelation: data.freeCancelation,
         price: data.price,
         locationID: formData?.locationID, //"3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        location: formData?.locationID,
+        location: formData?.location,
         capacity: data.capacity,
       };
     }
     console.log(sendData);
     if (edit) {
       axios
-        .put("https://devcademy.herokuapp.com/api/Accomodations/" + id, {
+        .put("https://devcademy.herokuapp.com/api/Accomodations/" + id, 
           sendData,
-        })
+        )
         .then(function (response) {
           console.log(response);
         })
@@ -84,9 +82,9 @@ export default function MyPlaces() {
         });
     } else {
       axios
-        .post("https://devcademy.herokuapp.com/api/Accomodations", {
+        .post("https://devcademy.herokuapp.com/api/Accomodations", 
           sendData,
-        })
+        )
         .then(function (response) {
           console.log(response);
         })
@@ -94,6 +92,7 @@ export default function MyPlaces() {
           console.log(error);
         });
     }
+    window.location.reload()
   };
 
   const {
@@ -119,14 +118,3 @@ export default function MyPlaces() {
     </MainWrapp>
   );
 }
-
-/*
-
-location: {
-        name: data.location,
-        imageUrl: data.imageUrl,
-        postalCode: Location_ID.postalCode,
-        properties: Location_ID.properties,
-      },
-
-*/

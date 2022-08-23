@@ -32,22 +32,15 @@ export default function Reservation({
     var sendData = {
       email: formData?.email,
       personCount: Number(formData?.personCount),
-      checkIn: formData?.checkIn,
-      checkOut: formData?.checkOut,
+      checkIn: new Date(formData ? formData.checkIn:""),
+      checkOut: new Date(formData ? formData.checkOut:""),
       confirmed: true,
-      //id:FullAccommodationDetails.id,
       accomodationId: FullAccommodationDetails.id,
     };
-    //nisam jos shvatio koji je tocno url za rezervaciju
-    console.log(sendData);
     axios
-      .post("https://devcademy.herokuapp.com/api/Reservation", {
-        headers: {
-          "Content-Type": "application/json",
-          "accept": "*/*"
-        },
+      .post("https://devcademy.herokuapp.com/api/Reservation",
         sendData,
-      })
+      )
       .then(function (response) {
         console.log(response);
       })

@@ -98,6 +98,7 @@ const NewPlacForm: React.FC<{
   sendFrom: (data: any, edit: boolean, id: string) => void;
   setFormData: (data: FullAccommodationDetailsProps) => void;
 }> = (props) => {
+
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
     shortDescription: props.FormData ? props.FormData.shortDescription : "",
@@ -106,12 +107,13 @@ const NewPlacForm: React.FC<{
     type: props.FormData ? props.FormData.type : "",
     personCount: props.FormData?.personCount ? props.FormData.personCount : 1,
     price: props.FormData ? props.FormData.price : "",
-    location: props.FormData ? props.FormData.location : "",
-    postalCode: props.FormData ? props.FormData.postalCode : "",
+    location: props.FormData ? props.FormData.location.name : "",
+    postalCode: props.FormData ? props.FormData.location.postalCode : "",
     imageUrl: props.FormData ? props.FormData.imageUrl : "",
     freeCancelation: props.FormData ? props.FormData.freeCancelation : true,
   };
-  console.log(props.FormData);
+
+  console.log(props.FormData)
   const [type, setType] = useState<typeOfAccommodation>();
   const [nameValidation, setNameValidation] = useState(false);
   const [shortDescriptionValidation, setshortDescriptionValidation] =
@@ -296,7 +298,7 @@ const NewPlacForm: React.FC<{
             onChange={numberChange}
           />
         </S.RatingForm>
-        <TypeOfAccommodationComponent typeOfAccommodation={newPlaceState.type} required setType={setType} />
+        <TypeOfAccommodationComponent typeOfAccommodation={props.FormData ? props.FormData.type : ""} required setType={setType} />
         <TextField
           required
           type="number"

@@ -21,26 +21,27 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
-          <Route path="/locations" element={<Locations byLocation={true} />} />
+          <Route path="/*" element={<Navigate to="/" replace />} />
+          <Route path="/locations" element={login ? <Locations byLocation={true}/> : <Navigate to="/login" replace />}  />
           <Route
             path="/locations/homes"
-            element={<Locations byLocation={false} />}
+            element={login ?<Locations byLocation={false} />: <Navigate to="/login" replace />}
           >
             <Route
               path=":location"
-              element={<Locations byLocation={false} />}
+              element={login ?<Locations byLocation={false} />: <Navigate to="/login" replace />}
             />
           </Route>
 
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/favorites" element={login ?<Favorites />: <Navigate to="/login" replace />} />
           <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/my-places" element={<MyPlaces />} />
-          <Route path="/my-bookings" element={<MyBookings />} />
-          <Route path="/accommodation" element={<AccommodationPage />}>
+          <Route path="/my-places" element={login ?<MyPlaces />: <Navigate to="/login" replace />} />
+          <Route path="/my-bookings" element={login ?<MyBookings />: <Navigate to="/login" replace />} />
+          <Route path="/accommodation" element={login ?<AccommodationPage />: <Navigate to="/login" replace />}>
             <Route
               path="/accommodation:AccommodationID"
-              element={<AccommodationPage />}
+              element={login ?<AccommodationPage />: <Navigate to="/login" replace />}
             />
           </Route>
         </Routes>

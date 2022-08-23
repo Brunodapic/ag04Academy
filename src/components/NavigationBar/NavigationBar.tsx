@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function NavigationBar() {
   let navigate = useNavigate();
   const login = localStorage.getItem("login");
-  console.log(login);
 
   const logout = () => {
     console.log("logout");
