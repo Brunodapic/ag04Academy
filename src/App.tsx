@@ -12,7 +12,7 @@ import MyPlaces from "./pages/MyPlaces/MyPlaces";
 
 function App() {
   const login = localStorage.getItem("login");
-
+  console.log(login)
   return (
     <div className="App">
       <Router>

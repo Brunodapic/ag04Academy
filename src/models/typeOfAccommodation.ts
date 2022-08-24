@@ -9,5 +9,6 @@ export interface accommodationFormInterface {
 export enum typeOfAccommodation {
   Room,
   House,
-  Apartman,
+  Apartment,
+  Suite,
 }

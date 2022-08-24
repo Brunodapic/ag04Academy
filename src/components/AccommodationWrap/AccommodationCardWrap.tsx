@@ -6,8 +6,10 @@ import "./style.css";
 
 export default function AccommodationCardWrap({
   filterData,
+  AdvancedSearchData,
 }: {
   filterData?: any;
+  AdvancedSearchData?: any;
 }) {
   const {
     data: accomodations,
@@ -51,6 +53,30 @@ export default function AccommodationCardWrap({
             />
           )
         );
+        return content;
+      }
+
+      if (AdvancedSearchData && accomodations) {
+        const myClonedArray: any[] = [];
+        // @ts-ignore
+        accomodations.forEach((val: any) => {
+          if (
+            val.location.name == AdvancedSearchData.location &&
+            val.type == AdvancedSearchData.typeOfAccommodation &&
+            val.capacity >= AdvancedSearchData.number
+          ) {
+            myClonedArray.push(Object.assign({}, val));
+          }
+        });
+        myClonedArray.map((accomodation) =>
+          content.push(
+            <AccommodationCard
+              key={accomodation.id}
+              FullAccommodationDetailsProps={accomodation}
+            />
+          )
+        );
+        console.log(content);
         return content;
       }
 
