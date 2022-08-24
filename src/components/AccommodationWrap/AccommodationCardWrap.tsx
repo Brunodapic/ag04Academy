@@ -17,6 +17,7 @@ export default function AccommodationCardWrap({
     loaded: accomodationsLoaded,
   } = useAxios("Accomodations/recommendation", "GET");
 
+
   function useFilterData(value: any) {
     if (filterData.typeOfAccommodation && filterData.number) {
       return (
@@ -53,6 +54,7 @@ export default function AccommodationCardWrap({
             />
           )
         );
+        
         return content;
       }
 
@@ -60,6 +62,7 @@ export default function AccommodationCardWrap({
         const myClonedArray: any[] = [];
         // @ts-ignore
         accomodations.forEach((val: any) => {
+
           if (
             val.location.name == AdvancedSearchData.location &&
             val.type == AdvancedSearchData.typeOfAccommodation &&
@@ -76,7 +79,6 @@ export default function AccommodationCardWrap({
             />
           )
         );
-        console.log(content);
         return content;
       }
 
@@ -107,7 +109,7 @@ export default function AccommodationCardWrap({
     <div className="accommodation-card-wrap">
       <div className="accommodation-card-header">
         <h2>Homes guests love</h2>
-        <Link to="/locations/homes" style={{ textDecoration: "none" }}>
+        <Link to="/favorites" style={{ textDecoration: "none" }}>
           <Button className="ViewAll"> View All Homes &rarr;</Button>
         </Link>
       </div>

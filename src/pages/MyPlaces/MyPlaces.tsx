@@ -68,7 +68,6 @@ export default function MyPlaces() {
         capacity: data.capacity,
       };
     }
-    console.log(sendData);
     if (edit) {
       axios
         .put("https://devcademy.herokuapp.com/api/Accomodations/" + id, 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import "./App.css";
 import DisplayFooter from "./components/DisplayFooter/DisplayFooter";
@@ -12,7 +13,10 @@ import MyPlaces from "./pages/MyPlaces/MyPlaces";
 
 function App() {
   const login = localStorage.getItem("login");
-  console.log(login)
+
+  useEffect(() => {
+  }, [login]);
+
   return (
     <div className="App">
       <Router>
@@ -23,17 +27,18 @@ function App() {
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
           <Route path="/locations" element={login ? <Locations byLocation={true}/> : <Navigate to="/login" replace />}  />
+          
+          <Route path="/favorites" element={login ?<Favorites />: <Navigate to="/login" replace />} />
           <Route
-            path="/locations/homes"
-            element={login ?<Locations byLocation={false} />: <Navigate to="/login" replace />}
+            path="/favorites"
+            element={login ?<Favorites />: <Navigate to="/login" replace />}
           >
             <Route
               path=":location"
-              element={login ?<Locations byLocation={false} />: <Navigate to="/login" replace />}
+              element={login ?<Favorites />: <Navigate to="/login" replace />}
             />
           </Route>
 
-          <Route path="/favorites" element={login ?<Favorites />: <Navigate to="/login" replace />} />
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/my-places" element={login ?<MyPlaces />: <Navigate to="/login" replace />} />

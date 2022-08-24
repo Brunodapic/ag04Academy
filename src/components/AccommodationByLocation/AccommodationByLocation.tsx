@@ -8,13 +8,13 @@ const AccommodationByLocation: React.FC<{
 }> = (props) => {
 
   return (
-    <MainWrapp>
-      {props.location && props.data.state ? (
+    <>
+      {props.location && props.data ? (
         <AccommodationByData location={props.location} data={props.data} />
       ) : (
         <NoDataAccommodation />
       )}
-    </MainWrapp>
+    </>
   );
 };
 
