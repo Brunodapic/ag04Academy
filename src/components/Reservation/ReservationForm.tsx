@@ -1,24 +1,20 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
+import { AddReservationDtoProperties } from "../../data/ApiInterface";
 import * as S from "./ReservationStyledComponent";
-
-interface reservationFormInterface {
-  name: string;
-  email: string;
-  number: number;
-  //orginalno je za checkin i checkout bio Date , ali imao sam error-e vezi neke konverzije datuma
-  checkIn: string;
-  checkOut: string;
-}
 
 export default function ReservationForm({
   getDataFromForm,
 }: {
-  getDataFromForm: (data: reservationFormInterface) => void;
+  getDataFromForm: (data: AddReservationDtoProperties) => void;
 }) {
   const [name, setName] = useState("");
+  const nameValidation = name.length < 300 && name.length > 1;
   const [email, setEmail] = useState("");
-  const [number, setNumber] = useState(0);
+  const emailValidation =
+    email.includes("@") && email.length < 300 && email.length > 1;
+
+  const [number, setNumber] = useState(1);
 
   const [checkIn, setCheckIn] = useState(FormatDate(new Date()));
   const [checkOut, setCheckOut] = useState(FormatDate(new Date()));
@@ -61,9 +57,10 @@ export default function ReservationForm({
     const reservationForm = {
       name: name,
       email: email,
-      number: number,
+      personCount: number,
       checkIn: checkIn,
       checkOut: checkOut,
+      confirmed: true,
     };
 
     getDataFromForm(reservationForm);
@@ -83,6 +80,10 @@ export default function ReservationForm({
           label="Full Name"
           variant="outlined"
           value={name}
+          error={!nameValidation}
+          helperText={
+            nameValidation ? "" : "Full name should have max 300 characters."
+          }
           onChange={nameChange}
         />
         <TextField
@@ -90,6 +91,12 @@ export default function ReservationForm({
           label="Email address"
           variant="outlined"
           value={email}
+          error={!emailValidation}
+          helperText={
+            emailValidation
+              ? ""
+              : "Email address should have max 100 character and be valid email address"
+          }
           onChange={emailChange}
         />
         <TextField
@@ -98,8 +105,7 @@ export default function ReservationForm({
           variant="outlined"
           InputProps={{
             inputProps: {
-              max: 20,
-              min: 0,
+              min: 1,
             },
           }}
           value={number}
@@ -116,7 +122,6 @@ export default function ReservationForm({
             value={checkIn}
             onChange={checkInChange}
           />
-
           <TextField
             id="date"
             label="Check out"
@@ -132,6 +137,7 @@ export default function ReservationForm({
           <S.ReservationFormSubmitButton
             variant="contained"
             onClick={() => reservationFromSubmit()}
+            disabled={!emailValidation || !nameValidation}
           >
             Book your stay
           </S.ReservationFormSubmitButton>

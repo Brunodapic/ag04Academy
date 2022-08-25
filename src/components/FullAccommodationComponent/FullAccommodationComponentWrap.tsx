@@ -30,7 +30,7 @@ export default function FullAccommodationComponentWrap({
       <div className="full-accommodation-component-header">
         <img
           className="full-accommodation-component-header-image"
-          src={image}
+          src={FullAccommodationDetails.imageUrl? FullAccommodationDetails.imageUrl:image}
           alt="Header of Component"
         />
       </div>

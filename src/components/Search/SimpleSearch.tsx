@@ -2,17 +2,18 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import * as S from "./SearchStyledComponents";
 
-const SimpleSearch: React.FC<{ SearchResult: (data: string) => void }> = (
+const SimpleSearch: React.FC<{ SimpleSearchResult: (data: string) => void }> = (
   props
 ) => {
+  
   const [location, setLocation] = useState("");
 
   const SimpleSearchSubmit = () => {
-    props.SearchResult(location);
+    props.SimpleSearchResult(location);
   };
 
   return (
-    <div>
+    <div style={{width:"100%"}}>
       <S.AccommodationSimpleSearchInner>
         <TextField
           name="location"

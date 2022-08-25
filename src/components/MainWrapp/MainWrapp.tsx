@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-export default function DisplayHeader(props: {
+export default function MainWrapp(props: {
   children:
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
     | React.ReactFragment

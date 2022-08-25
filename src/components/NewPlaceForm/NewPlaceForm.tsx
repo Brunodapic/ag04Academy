@@ -37,7 +37,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
       };
     }
     case "SHORT_CHANGE": {
-      return { ...state, subtitle: action.value };
+      return { ...state, shortDescription: action.value };
     }
     case "LONG_CHANGE": {
       return {
@@ -66,7 +66,7 @@ const newPlaceStateReducer = (state: any, action: any) => {
     case "TOGGLE_CHANGE": {
       return {
         ...state,
-        cancellation: !state.cancellation,
+        freeCancelation: !state.freeCancelation,
       };
     }
     case "TYPEOFACCOMMODATION_CHANGE": {
@@ -78,16 +78,16 @@ const newPlaceStateReducer = (state: any, action: any) => {
     default:
       return {
         title: "",
-        subtitle: "",
+        shortDescription: "",
         description: "",
-        categorization: 0,
+        categorization: 1,
         type: null,
-        personCount: 0,
-        price: 0,
+        personCount: 1,
+        price: "",
         location: "",
         postalCode: "",
         imageUrl: "",
-        cancellation: false,
+        freeCancelation: true,
       };
   }
 };
@@ -95,23 +95,30 @@ const newPlaceStateReducer = (state: any, action: any) => {
 const NewPlacForm: React.FC<{
   FormData: FullAccommodationDetailsProps | undefined;
   toggleSetFormAdd: () => void;
+  sendFrom: (data: any, edit: boolean, id: string) => void;
+  setFormData: (data: FullAccommodationDetailsProps) => void;
 }> = (props) => {
+
   const newPlaceDefault = {
     title: props.FormData ? props.FormData.title : "",
-    subtitle: props.FormData ? props.FormData.subtitle : "",
+    shortDescription: props.FormData ? props.FormData.shortDescription : "",
     description: props.FormData ? props.FormData.description : "",
-    categorization: props.FormData ? props.FormData.categorization : 0,
+    categorization: props.FormData ? props.FormData.categorization : 1,
     type: props.FormData ? props.FormData.type : "",
-    personCount: props.FormData ? props.FormData.personCount : 0,
-    price: props.FormData ? props.FormData.price : 0,
-    location: props.FormData ? props.FormData.location : "",
-    postalCode: props.FormData ? props.FormData.postalCode : "",
+    personCount: props.FormData?.personCount ? props.FormData.personCount : 1,
+    price: props.FormData ? props.FormData.price : "",
+    location: props.FormData ? props.FormData.location.name : "",
+    postalCode: props.FormData ? props.FormData.location.postalCode : "",
     imageUrl: props.FormData ? props.FormData.imageUrl : "",
-    freeCancelation: props.FormData ? props.FormData.freeCancelation : false,
+    freeCancelation: props.FormData ? props.FormData.freeCancelation : true,
   };
 
-  const [type, setType] =
-    useState<typeOfAccommodation>();
+  console.log(props.FormData)
+  const [type, setType] = useState<typeOfAccommodation>();
+  const [nameValidation, setNameValidation] = useState(false);
+  const [shortDescriptionValidation, setshortDescriptionValidation] =
+    useState(false);
+  const [locationValidation, setLocationValidation] = useState(false);
 
   const [newPlaceState, dispatchNewPlaceState] = useReducer(
     newPlaceStateReducer,
@@ -133,8 +140,7 @@ const NewPlacForm: React.FC<{
         type: "CATEGORIZATION_CHANGE",
         value: Number(value),
       });
-    }
-    else if (name === "personCount") {
+    } else if (name === "personCount") {
       dispatchNewPlaceState({
         type: "personCount_CHANGE",
         value: Number(value),
@@ -153,17 +159,27 @@ const NewPlacForm: React.FC<{
     let value = event.target.value;
     switch (name) {
       case "name": {
-        dispatchNewPlaceState({
-          type: "NAME_CHANGE",
-          value: value,
-        });
+        if (value.length < 100) {
+          nameValidation && setNameValidation(false);
+          dispatchNewPlaceState({
+            type: "NAME_CHANGE",
+            value: value,
+          });
+        } else {
+          setNameValidation(true);
+        }
         break;
       }
       case "short": {
-        dispatchNewPlaceState({
-          type: "SHORT_CHANGE",
-          value: value,
-        });
+        if (value.length < 100) {
+          nameValidation && setshortDescriptionValidation(false);
+          dispatchNewPlaceState({
+            type: "SHORT_CHANGE",
+            value: value,
+          });
+        } else {
+          setshortDescriptionValidation(true);
+        }
         break;
       }
       case "long": {
@@ -174,10 +190,15 @@ const NewPlacForm: React.FC<{
         break;
       }
       case "location": {
-        dispatchNewPlaceState({
-          type: "LOCATION_CHANGE",
-          value: value,
-        });
+        if (value.length < 100) {
+          locationValidation && setLocationValidation(false);
+          dispatchNewPlaceState({
+            type: "LOCATION_CHANGE",
+            value: value,
+          });
+        } else {
+          setLocationValidation(true);
+        }
         break;
       }
       case "postal": {
@@ -203,7 +224,32 @@ const NewPlacForm: React.FC<{
 
   const submitHandle = (event: any) => {
     event.preventDefault();
-    console.log(newPlaceState)
+    props.sendFrom(
+      newPlaceState,
+      props.FormData == null || props.FormData.id == "" ? false : true,
+      props.FormData == null || props.FormData.id == "" ? "" : props.FormData.id
+    );
+    props.toggleSetFormAdd();
+  };
+
+  const cancel = () => {
+    props.setFormData({
+      title: "",
+      shortDescription: "",
+      description: "",
+      categorization: 1,
+      type: "",
+      personCount: 1,
+      price: 0,
+      location: "",
+      postalCode: "",
+      imageUrl: "",
+      freeCancelation: true,
+      id: "",
+      subtitle: "",
+      locationID: "",
+      capacity: 0,
+    });
     props.toggleSetFormAdd();
   };
 
@@ -217,6 +263,8 @@ const NewPlacForm: React.FC<{
           label="Listing name"
           variant="outlined"
           name="name"
+          error={nameValidation}
+          helperText={nameValidation && "max 100 characters"}
           value={newPlaceState.title}
           onChange={textChange}
         />
@@ -226,7 +274,9 @@ const NewPlacForm: React.FC<{
           label="Short description"
           name="short"
           variant="outlined"
-          value={newPlaceState.subtitle}
+          error={shortDescriptionValidation}
+          helperText={shortDescriptionValidation && "max 200 characters"}
+          value={newPlaceState.shortDescription}
           onChange={textChange}
         />
         <TextField
@@ -248,10 +298,7 @@ const NewPlacForm: React.FC<{
             onChange={numberChange}
           />
         </S.RatingForm>
-        <TypeOfAccommodationComponent
-          required
-          setType={setType}
-        />
+        <TypeOfAccommodationComponent typeOfAccommodation={props.FormData ? props.FormData.type : ""} required setType={setType} />
         <TextField
           required
           type="number"
@@ -260,6 +307,11 @@ const NewPlacForm: React.FC<{
           variant="outlined"
           value={newPlaceState.personCount}
           onChange={numberChange}
+          InputProps={{
+            inputProps: {
+              min: 1,
+            },
+          }}
         />
         <TextField
           required
@@ -276,6 +328,8 @@ const NewPlacForm: React.FC<{
           label="Location"
           name="location"
           variant="outlined"
+          error={locationValidation}
+          helperText={locationValidation && "max 150 characters"}
           value={newPlaceState.location}
           onChange={textChange}
         />
@@ -302,7 +356,8 @@ const NewPlacForm: React.FC<{
           control={
             <Switch
               color="primary"
-              value={newPlaceState.cancellation}
+              checked={newPlaceState.freeCancelation}
+              value={newPlaceState.freeCancelation}
               onChange={toggleChange}
             />
           }
@@ -314,11 +369,20 @@ const NewPlacForm: React.FC<{
           }}
         />
         <Button
+          sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
+          className="button-add-new-place"
+          onClick={cancel}
+        >
+          CANCLE
+        </Button>
+        <Button
           type="submit"
           sx={{ backgroundColor: "#40E0D0", color: "white", alignSelf: "end" }}
           className="button-add-new-place"
         >
-          {props.FormData == null ? "ADD NEW PLACE" : "FINISH EDIT"}
+          {props.FormData == null || props.FormData.id == ""
+            ? "ADD NEW PLACE"
+            : "FINISH EDIT"}
         </Button>
       </S.NewPlaceForm>
     </S.NewPlaceFormWrap>

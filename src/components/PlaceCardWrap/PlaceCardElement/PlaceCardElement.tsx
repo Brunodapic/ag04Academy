@@ -5,15 +5,22 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./style.css";
-import FullAccommodationDetailsProps from "../../../models/accommodationModel";
 
 interface PlaceCardElementProps {
-  PlaceCardData: FullAccommodationDetailsProps;
+  PlaceCardData: any;
   image: string;
   editForm: (data: any) => void;
+  setPopUpToggle: (data: any) => void;
+  popUpToggle: boolean;
+  setIdDelete: (data: string) => void;
 }
 
 export default function PlaceCardElement(props: PlaceCardElementProps) {
+  const deletePlace = () => {
+    props.setIdDelete(props.PlaceCardData.id);
+    props.setPopUpToggle(!props.popUpToggle);
+  };
+
   return (
     <Card className="PlaceCardContainer" sx={{ maxWidth: 297, maxHeight: 413 }}>
       <CardMedia
@@ -26,14 +33,9 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.PlaceCardData.title}
+          {props.PlaceCardData && props.PlaceCardData.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.PlaceCardData.location}
-        </Typography>
-        <Typography variant="body2" color="text.primary">
-          {props.PlaceCardData.subtitle}
-        </Typography>
+        
         <CardActions className="plac-card-buttons">
           <Button
             color="success"
@@ -44,7 +46,7 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
           >
             EDIT
           </Button>
-          <Button color="error" size="small" >
+          <Button color="error" size="small" onClick={() => deletePlace()}>
             DELETE PLACE
           </Button>
         </CardActions>
@@ -52,3 +54,10 @@ export default function PlaceCardElement(props: PlaceCardElementProps) {
     </Card>
   );
 }
+
+/*
+<Typography variant="body2" color="text.secondary">
+          {props.PlaceCardData && props.PlaceCardData.location.name}
+        </Typography>
+
+*/

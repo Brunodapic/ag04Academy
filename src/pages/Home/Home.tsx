@@ -1,4 +1,3 @@
-import React from "react";
 import AccommodationCardWrap from "../../components/AccommodationWrap/AccommodationCardWrap";
 import CityCardWrap from "../../components/CityCardWrap/CityCardWrap";
 import DisplayHeader from "../../components/DisplayHeader/DisplayHeader";
@@ -10,7 +9,7 @@ export default function Home() {
     <div>
       <MainWrapp>
         <DisplayHeader />
-        <CityCardWrap />
+        <CityCardWrap location={""} header={true} limit={5}/>
         <AccommodationCardWrap />
       </MainWrapp>
     </div>
