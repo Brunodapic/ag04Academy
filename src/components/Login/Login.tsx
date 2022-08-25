@@ -28,9 +28,6 @@ export default function LoginComponent() {
     email.includes("@") && email.length < 300 && email.length > 1;
 
   const passwordValidation = password.length < 20 && password.length > 6;
-
-  const acceptValidation = accept;
-
   const passwordChange = (event: any) => {
     setPassword(event.target.value);
   };

@@ -1,4 +1,3 @@
-import MainWrapp from "../../components/MainWrapp/MainWrapp";
 import AccommodationByData from "./AccommodationByData";
 import NoDataAccommodation from "./NoDataAccommodation";
 

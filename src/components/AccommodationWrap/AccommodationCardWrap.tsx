@@ -64,8 +64,8 @@ export default function AccommodationCardWrap({
         accomodations.forEach((val: any) => {
 
           if (
-            val.location.name == AdvancedSearchData.location &&
-            val.type == AdvancedSearchData.typeOfAccommodation &&
+            val.location.name === AdvancedSearchData.location &&
+            val.type === AdvancedSearchData.typeOfAccommodation &&
             val.capacity >= AdvancedSearchData.number
           ) {
             myClonedArray.push(Object.assign({}, val));
