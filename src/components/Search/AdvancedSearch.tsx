@@ -113,7 +113,7 @@ const AdvancedSearch: React.FC<{
         />
 
         <TypeOfAccommodationComponent
-          setTypeOfAccommodation={setTypeOfAccommodation}
+          setType={setTypeOfAccommodation}
           typeOfAccommodation={typeOfAccommodation}
         />
         <S.AccommodationSearchButton

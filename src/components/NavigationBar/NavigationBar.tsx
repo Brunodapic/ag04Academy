@@ -6,9 +6,10 @@ export default function NavigationBar() {
   const login = localStorage.getItem("login");
 
   const logout = () => {
-    console.log("logout");
     localStorage.clear();
     navigate("/login");
+    window.location.reload()
+
   };
 
   return (

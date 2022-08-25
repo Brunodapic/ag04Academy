@@ -2,7 +2,7 @@ import PlaceCardElement from "./PlaceCardElement/PlaceCardElement";
 import "./style.css";
 import { Button } from "@mui/material";
 import FullAccommodationDetailsProps from "../../models/accommodationModel";
-import {  useState } from "react";
+import { useState } from "react";
 import PopUpWrap from "../PopUp/PopUpWrap";
 import axios from "axios";
 
@@ -27,20 +27,21 @@ export default function PlaceCardWrap(props: {
   const toggleConfirmDelete = () => {
     setConfirmDelete(!confirmDelete);
     axios
-      .delete("https://devcademy.herokuapp.com/api/Accomodations/"+idDelete)
+      .delete("https://devcademy.herokuapp.com/api/Accomodations/" + idDelete)
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+    window.location.reload();
   };
 
   const getCards = () => {
-    let content: JSX.Element[]=[];
+    let content: JSX.Element[] = [];
 
     if (props.allAccommodations) {
-      props.allAccommodations.map((place) =>{
+      props.allAccommodations.map((place) => {
         content.push(
           <PlaceCardElement
             key={place.id}
@@ -52,10 +53,9 @@ export default function PlaceCardWrap(props: {
             setIdDelete={setIdDelete}
           />
         );
-        })
-      
+      });
     } else {
-      return "Loading..."
+      return "Loading...";
     }
     return content;
   };
@@ -85,4 +85,3 @@ export default function PlaceCardWrap(props: {
     </>
   );
 }
-

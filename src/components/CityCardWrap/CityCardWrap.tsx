@@ -12,9 +12,11 @@ import { RootState } from "../../store";
 export default function CityCardWrap({
   header,
   location,
+  limit,
 }: {
   header: boolean;
   location?: string;
+  limit?:number;
 }) {
 
 
@@ -74,6 +76,9 @@ export default function CityCardWrap({
 
     if(content.length===0){
       return "No location with that name, search another name"
+    }
+    if(limit){
+      return content.slice(0, limit);
     }
     return content;
   };

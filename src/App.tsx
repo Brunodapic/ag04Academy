@@ -15,6 +15,7 @@ function App() {
   const login = localStorage.getItem("login");
 
   useEffect(() => {
+    console.log(login)
   }, [login]);
 
   return (
